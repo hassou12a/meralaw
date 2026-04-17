@@ -51,8 +51,8 @@ function LoginForm() {
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 mb-4">
-            <Scale className="h-10 w-10 text-navy" />
-            <span className="text-3xl font-bold text-navy font-cairo">LexDZ</span>
+            <Scale className="h-10 w-10 text-gold" />
+            <span className="text-3xl font-bold text-navy font-cairo">MeraLaw</span>
           </Link>
           <h1 className="text-2xl font-bold text-navy dark:text-white">{t['auth.welcomeBack']}</h1>
           <p className="text-slate-500 mt-2">{t['auth.login']}</p>
