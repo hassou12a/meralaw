@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                     String    @id @default(cuid())
+  email                  String    @unique
+  password               String
+  name                   String
+  profession             String
+  plan                    String    @default("FREE")
+  subscriptionStartDate  DateTime?
+  subscriptionEndDate    DateTime?
+  isPaymentPending       Boolean   @default(false)
+  paymentReceiptUrl      String?
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+  cases                  Case[]
+  chatMessages           ChatMessage[]
+  subscription           Subscription?
+}
+
+model Law {
+  id                 String      @id @default(cuid())
+  titleAr            String
+  titleFr            String
+  titleEn            String
+  category            String
+  referenceNumber     String      @unique
+  year               Int
+  publicationDate    String
+  journalOfficiel     String
+  descriptionAr       String
+  descriptionFr      String
+  descriptionEn      String
+  contentAr          String      @db.Text
+  contentFr          String      @db.Text
+  isPremium          Boolean     @default(false)
+  isVerified         Boolean     @default(false)
+  source            String?
+  pdfUrlAr           String?
+  pdfUrlFr           String?
+  jorfYear           Int?
+  jorfNumber         Int?
+  searchVectorAr     String?
+  searchVectorFr     String?
+  tags              String[]
+  createdAt          DateTime    @default(now())
+  caseLaws           CaseLaw[]
+}
+
+model Case {
+  id          String      @id @default(cuid())
+  userId      String
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String
+  description String?
+  archived    Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  caseLaws    CaseLaw[]
+  notes       CaseNote[]
+  messages    ChatMessage[]
+}
+
+model CaseLaw {
+  id        String   @id @default(cuid())
+  caseId    String
+  case      Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  lawId     String
+  law       Law      @relation(fields: [lawId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([caseId, lawId])
+}
+
+model CaseNote {
+  id        String   @id @default(cuid())
+  caseId    String
+  case      Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  caseId    String?
+  case      Case?    @relation(fields: [caseId], references: [id], onDelete: SetNull)
+  role      String
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+}
+
+model Subscription {
+  id        String    @id @default(cuid())
+  userId    String    @unique
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status    String    @default("inactive")
+  startDate DateTime?
+  endDate   DateTime?
+  createdAt DateTime  @default(now())
+}
+
+model SearchLog {
+  id             String    @id @default(cuid())
+  query          String
+  resultsCount    Int
+  language       String?
+  category       String?
+  userId         String?
+  createdAt      DateTime   @default(now())
+}

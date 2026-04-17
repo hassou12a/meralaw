@@ -1,0 +1,911 @@
+{
+  "laws": [
+    {
+      "id": 1,
+      "title_ar": "دستور الجمهورية الجزائرية الديمقراطية الشعبية",
+      "title_fr": "Constitution de la République Algérienne Démocratique et Populaire",
+      "reference_number": "المرسوم الرئاسي رقم 96-438",
+      "law_type": "دستور",
+      "year": 1996,
+      "jorf_issue_number": 76,
+      "date_published": "1996-12-07",
+      "date_amended": "2020-12-30",
+      "amendment_reference": "القانون 20-01",
+      "full_text_ar": " دستور الجمهورية الجزائرية democracy الشعبية...",
+      "full_text_fr": "Constitution de la République Algérienne Démocratique et Populaire...",
+      "category": "دستور",
+      "articles": [
+        {
+          "number": "1",
+          "title": "الجمهورية",
+          "content_ar": "الجزائر جمهورية واحدة لا غير، democracy شعبية.",
+          "content_fr": "L'Algérie est une République indivisible, démocratique et populaire."
+        },
+        {
+          "number": "2",
+          "title": "الشعب",
+          "content_ar": "الشعب الجزائري sovereign ومصدر كل authority.",
+          "content_fr": "Le peuple algériis est la source de tout pouvoir."
+        },
+        {
+          "number": "11",
+          "title": "اللامركزية",
+          "content_ar": "الجماعات المحلية admins regions تتصرف بحرية.",
+          "content_fr": "Les collectivités territoriales sont des personnes morales."
+        },
+        {
+          "number": "29",
+          "title": "المساواة",
+          "content_ar": "المواطنون متساوون في الحقوق والواجبات.",
+          "content_fr": "Les citoyens sont égaux en droits et obligations."
+        },
+        {
+          "number": "51",
+          "title": "حرية Worship",
+          "content_ar": "حرية الضمير وممارسة religion محمية.",
+          "content_fr": "La liberté de conscience et de religion est garantie."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title_ar": "قانون الإجراءات المدنية والإدارية",
+      "title_fr": "Code de Procédure Civile et Administrative",
+      "reference_number": "القانون رقم 08-09",
+      "law_type": "قانون",
+      "year": 2008,
+      "jorf_issue_number": 21,
+      "date_published": "2008-02-25",
+      "full_text_ar": "قانون الإجراءات المدنية والإدارية...",
+      "full_text_fr": "Code de procédure civile et administrative...",
+      "category": "إجراءات قضائية إدارية",
+      "articles": [
+        {
+          "number": "1",
+          "title": "الاختصاص",
+          "content_ar": "المحاكم المدنية مختصة بالنظر في المنازعات المدنية.",
+          "content_fr": "Les tribunaux civiles sont compétents pour connaître des litiges civils."
+        },
+        {
+          "number": "3",
+          "title": "الميعاد",
+          "content_ar": "ميعاد الاستئناف ثلاثة أشهر من تاريخ الحكم.",
+          "content_fr": "Le délai d'appel est de trois mois à compter du jugement."
+        },
+        {
+          "number": "7",
+          "title": "الطعن",
+          "content_ar": "الطعن بالنقض أمام مجلس الدولة.",
+          "content_fr": "Le pourvoi en cassation est porté devant le Conseil d'État."
+        },
+        {
+          "number": "12",
+          "title": "النفاذ",
+          "content_ar": "الحكم ينفذ بعد اكتمال الدرجة.",
+          "content_fr": "Le jugement s'exécute après épuisement des voies de recours."
+        },
+        {
+          "number": "15",
+          "title": "التوقف",
+          "content_ar": "التوقف عن التنفيذ في حالات خاصة.",
+          "content_fr": "L'exécution peut être suspendue dans des cas particuliers."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title_ar": "قانون الوظيف العمومي",
+      "title_fr": "Statut Général de la Fonction Publique",
+      "reference_number": "الأمر رقم 06-03",
+      "law_type": "أمر",
+      "year": 2006,
+      "jorf_issue_number": 46,
+      "date_published": "2006-07-15",
+      "full_text_ar": "قانون الوظيف العمومي...",
+      "full_text_fr": "Statut général de la fonction publique...",
+      "category": "وظيف عمومي",
+      "articles": [
+        {
+          "number": "3",
+          "title": "التعيين",
+          "content_ar": "التعيين في المنصب يكون بموجب مسابقة.",
+          "content_fr": "La nomination au poste se fait par voie de concours."
+        },
+        {
+          "number": "8",
+          "title": "الترقي",
+          "content_ar": "الترقية في الرتبة بشروط.",
+          "content_fr": "L'avancement d'échelon est subordonné à des conditions."
+        },
+        {
+          "number": "11",
+          "title": "التأديب",
+          "content_ar": "المخالفات التأديبية.",
+          "content_fr": "Les fautes disciplinaires sont définies par le présent statut."
+        },
+        {
+          "number": "16",
+          "title": "الإحالة على التقاعد",
+          "content_ar": "شروط الإحالة على التقاعد.",
+          "content_fr": "Les conditions de mise à la retraite sont fixées par la loi."
+        },
+        {
+          "number": "20",
+          "title": "الحقوق والواجبات",
+          "content_ar": "حقوق الموظف وواجباته.",
+          "content_fr": "Les droits et obligations des agents publics sont définis."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title_ar": "قانون البلدية",
+      "title_fr": "Loi sur la Commune",
+      "reference_number": "القانون رقم 11-10",
+      "law_type": "قانون",
+      "year": 2011,
+      "jorf_issue_number": 37,
+      "date_published": "2011-06-22",
+      "full_text_ar": "قانون البلدية...",
+      "full_text_fr": "Loi sur la commune...",
+      "category": "إدارة محلية",
+      "articles": [
+        {
+          "number": "1",
+          "title": "التعريف",
+          "content_ar": "البلدية وحدة أساسية في الإدارة المحلية.",
+          "content_fr": "La commune est une unité de base de l'administration locale."
+        },
+        {
+          "number": "5",
+          "title": "المجلس الشعبي البلدي",
+          "content_ar": "المجلس الشعبي البلدي elected every 5 years.",
+          "content_fr": "Le assemblée populaire communal est élue pour 5 ans."
+        },
+        {
+          "number": "8",
+          "title": "اختصاصات المجلس",
+          "content_ar": "اختصاصات المجلس البلدي.",
+          "content_fr": "Les compétences du assembly populaire sont définies."
+        },
+        {
+          "number": "12",
+          "title": "رئيس المجلس",
+          "content_ar": "رئيس المجلس executive للبلدية.",
+          "content_fr": "Le président dirige l'exécutif de la commune."
+        },
+        {
+          "number": "18",
+          "title": "الميزانية",
+          "content_ar": "ميزانية البلدية.",
+          "content_fr": "Le budget de la commune est préparé et exécuté."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title_ar": "قانون الولاية",
+      "title_fr": "Loi sur la Wilaya",
+      "reference_number": "القانون رقم 12-07",
+      "law_type": "قانون",
+      "year": 2012,
+      "jorf_issue_number": 12,
+      "date_published": "2012-02-21",
+      "full_text_ar": "قانون الولاية...",
+      "full_text_fr": "Loi sur la wilaya...",
+      "category": "إدارة محلية",
+      "articles": [
+        {
+          "number": "1",
+          "title": "تعريف الولاية",
+          "content_ar": "الولاية جهاز إقليمي.",
+          "content_fr": "La wilaya est une unité territoriale déconcentrée."
+        },
+        {
+          "number": "4",
+          "title": "المجلس الشعبي الولائي",
+          "content_ar": "المجلس الشعبي الولائي.",
+          "content_fr": "L'assemblée populaire de wilaya."
+        },
+        {
+          "number": "7",
+          "title": "اختصاصات الوالي",
+          "content_ar": "اختصاصات والي الولاية.",
+          "content_fr": "Les compétences du wali."
+        },
+        {
+          "number": "10",
+          "title": "التنسيق",
+          "content_ar": "التنسيق بين البلديات.",
+          "content_fr": "La coordination entre communes."
+        },
+        {
+          "number": "15",
+          "title": "الرقابة",
+          "content_ar": "رقابة الدولة على الولاية.",
+          "content_fr": "La tutelle de l'État sur la wilaya."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title_ar": "قانون الصفقات العمومية وتفويضات المرفق العام",
+      "title_fr": "Loi sur les Marchés Publics et Délégations de Service Public",
+      "reference_number": "المرسوم الرئاسي رقم 15-247",
+      "law_type": "مرسوم رئاسي",
+      "year": 2015,
+      "jorf_issue_number": 50,
+      "date_published": "2015-09-16",
+      "amendment_reference": "المرسوم الرئاسي 23-316",
+      "date_amended": "2023-10-16",
+      "full_text_ar": "قانون الصفقات العمومية...",
+      "full_text_fr": "Loi sur les marchés publics...",
+      "category": "صفقات عمومية",
+      "articles": [
+        {
+          "number": "2",
+          "title": "المبادئ",
+          "content_ar": "المبادئ الأساسية للصفقات.",
+          "content_fr": "Les principes fondamentaux des marchés."
+        },
+        {
+          "number": "5",
+          "title": "أنواع الصفقات",
+          "content_ar": "أعمال، خدمات، توريدات.",
+          "content_fr": "Travaux, services, fournitures."
+        },
+        {
+          "number": "8",
+          "title": "الاستدعاء",
+          "content_ar": "طلبات العروض والاستدعاء.",
+          "content_fr": "Appel d'offres et demande de devis."
+        },
+        {
+          "number": "12",
+          "title": "العرض",
+          "content_ar": "تقييم العروض.",
+          "content_fr": "Évaluation des offres."
+        },
+        {
+          "number": "18",
+          "title": "التعاقد",
+          "content_ar": "إجراءات التعاقد.",
+          "content_fr": "Procédures de passation du marché."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title_ar": "قانون المالي�� العامة",
+      "title_fr": "Loi de Finances Générale",
+      "reference_number": "القانون رقم 84-17",
+      "law_type": "قانون",
+      "year": 1984,
+      "jorf_issue_number": 28,
+      "date_published": "1984-07-07",
+      "full_text_ar": "قانون المالية العامة...",
+      "full_text_fr": "Loi de finances générale...",
+      "category": "مالية عامة",
+      "articles": [
+        {
+          "number": "1",
+          "title": "مبدأ الوحدة",
+          "content_ar": "وحدة ميزانية الدولة.",
+          "content_fr": "Unité du budget de l'État."
+        },
+        {
+          "number": "3",
+          "title": "سنة مالية",
+          "content_ar": "السنة المالية من 1 يناير إلى 31 ديسمبر.",
+          "content_fr": "L'année financière va du 1er janvier au 31 décembre."
+        },
+        {
+          "number": "7",
+          "title": "ميزانية التسيير",
+          "content_ar": "نفقات التسيير.",
+          "content_fr": "Dépenses de fonctionnement."
+        },
+        {
+          "number": "10",
+          "title": "ميزانية التجهيز",
+          "content_ar": "نفقات التجهيز.",
+          "content_fr": "Dépenses d'équipement."
+        },
+        {
+          "number": "15",
+          "title": "المصادقة",
+          "content_ar": "مصادقة مجلس الأمة.",
+          "content_fr": "Approbation de l'assemblée populaire nationale."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title_ar": "قانون الضرائب المباشرة والرسوم المماثلة",
+      "title_fr": "Code des Impôts Directs et TaxesAssimilées",
+      "reference_number": "الأمر رقم 76-101",
+      "law_type": "أمر",
+      "year": 1976,
+      "jorf_issue_number": null,
+      "date_published": "1976-12-09",
+      "full_text_ar": "قانون الضرائب المبا��رة...",
+      "full_text_fr": "Code des impôts directs...",
+      "category": "جباية",
+      "articles": [
+        {
+          "number": "1",
+          "title": "ضريبة الدخل",
+          "content_ar": "ضريبة الدخل على الدخل.",
+          "content_fr": "L'impôt sur le revenu."
+        },
+        {
+          "number": "2",
+          "title": "ضريبة الشركات",
+          "content_ar": "ضريبة الشركات.",
+          "content_fr": "L'impôt sur les bénéfices des sociétés."
+        },
+        {
+          "number": "4",
+          "title": " TVA",
+          "content_ar": "ضريبة القيمة المضافة.",
+          "content_fr": "La taxe sur la valeur ajoutée."
+        },
+        {
+          "number": "8",
+          "title": "التحصيل",
+          "content_ar": "تحصيل الضرائب.",
+          "content_fr": "Le recouvrement des impôts."
+        },
+        {
+          "number": "12",
+          "title": "العقوبات",
+          "content_ar": "عقوبات التهرب الضريبي.",
+          "content_fr": "Sanctions en cas de fraude fiscale."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title_ar": "القانون التوجيهي للتعليم العالي والبحث العلمي",
+      "title_fr": "Loi d'Orientation sur l'Enseignement Supérieur et la Recherche Scientifique",
+      "reference_number": "القانون رقم 99-05",
+      "law_type": "قانون",
+      "year": 1999,
+      "jorf_issue_number": 23,
+      "date_published": "1999-04-04",
+      "full_text_ar": "قانون التعليم العالي...",
+      "full_text_fr": "Loi d'orientation sur l'enseignement supérieur...",
+      "category": "تعليم عالي",
+      "articles": [
+        {
+          "number": "1",
+          "title": "الأهداف",
+          "content_ar": "أهداف التعليم العالي.",
+          "content_fr": "Objectifs de l'enseignement supérieur."
+        },
+        {
+          "number": "3",
+          "title": "المؤسسات",
+          "content_ar": "جامعة، institute أعلى.",
+          "content_fr": "Universités et établissements supérieure."
+        },
+        {
+          "number": "5",
+          "title": "الشهادات",
+          "content_ar": "الشهادات awarded.",
+          "content_fr": "Les diplômes délivrés."
+        },
+        {
+          "number": "8",
+          "title": "البحث العلمي",
+          "content_ar": "تنظيم البحث العلمي.",
+          "content_fr": "Organisation de la recherche scientifique."
+        },
+        {
+          "number": "12",
+          "title": "التمويل",
+          "content_ar": "تمويل الجامعات.",
+          "content_fr": "Financement des universités."
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title_ar": "قانون حماية البيئة في إطار التنمية المستدامة",
+      "title_fr": "Loi sur la Protection de l'Environnement dans le Cadre du Développement Durable",
+      "reference_number": "القانون رقم 03-10",
+      "law_type": "قانون",
+      "year": 2003,
+      "jorf_issue_number": 43,
+      "date_published": "2003-07-19",
+      "full_text_ar": "قانون حماية البيئة...",
+      "full_text_fr": "Loi sur la protection de l'environnement...",
+      "category": "بيئة وتهيئة عمرانية",
+      "articles": [
+        {
+          "number": "1",
+          "title": "المبادئ",
+          "content_ar": "مبادئ حماية البيئة.",
+          "content_fr": "Principes de protection de l'environnement."
+        },
+        {
+          "number": "3",
+          "title": "التلوث",
+          "content_ar": "منع التلوث.",
+          "content_fr": "Prévention de la pollution."
+        },
+        {
+          "number": "5",
+          "title": "المحميات",
+          "content_ar": "المناطق المحمية.",
+          "content_fr": "Zones protégées."
+        },
+        {
+          "number": "8",
+          "title": "النفايات",
+          "content_ar": "إدارة النفايات.",
+          "content_fr": "Gestion des déchets."
+        },
+        {
+          "number": "12",
+          "title": "العقوبات",
+          "content_ar": "عقوبات التلوث.",
+          "content_fr": "Sanctions en cas de pollution."
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title_ar": "المرسوم التنفيذي المتعلق بتنظيم الإدارة المركزية",
+      "title_fr": "Décret Exécutif Relative à l'Organisation de l'Administration Centrale",
+      "reference_number": "المرسوم التنفيذي رقم 20-140",
+      "law_type": "مرسوم تنفيذي",
+      "year": 2020,
+      "jorf_issue_number": 24,
+      "date_published": "2020-04-26",
+      "full_text_ar": "مرسوم تنظيم الإدارة المركزية...",
+      "full_text_fr": "Décret sur l'organisation de l'administration centrale...",
+      "category": "تنظيم إداري",
+      "articles": [
+        {
+          "number": "1",
+          "title": "الوزارات",
+          "content_ar": " организации وزارات.",
+          "content_fr": "Organisation des ministères."
+        },
+        {
+          "number": "2",
+          "title": "المديريات",
+          "content_ar": "ديريات المركزية.",
+          "content_fr": "Directions centrales."
+        },
+        {
+          "number": "3",
+          "title": "ال Secretary العام",
+          "content_ar": "الأمانة العامة.",
+          "content_fr": "Secrétariats généraux."
+        },
+        {
+          "number": "5",
+          "title": "الصلاحيات",
+          "content_ar": "صلاحيات leaders.",
+          "content_fr": "Compétences des responsables."
+        },
+        {
+          "number": "8",
+          "title": "التنسيق",
+          "content_ar": "التنسيق بين المصالح.",
+          "content_fr": "Coordination entre services."
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title_ar": "المرسوم التنفيذي المتعلق بكيفيات ممارسة حق الإضراب",
+      "title_fr": "Décret Exécutif Relative aux Modalités d'Exercice du Droit de Grève",
+      "reference_number": "المرسوم التنفيذي رقم 90-02",
+      "law_type": "مرسوم تنفيذي",
+      "year": 1990,
+      "jorf_issue_number": 2,
+      "date_published": "1990-01-06",
+      "full_text_ar": "مرسوم حق الإضراب...",
+      "full_text_fr": "Décret sur le droit de grève...",
+      "category": "وظيف عمومي",
+      "articles": [
+        {
+          "number": "1",
+          "title": "التعريف",
+          "content_ar": "تعريف الإضراب.",
+          "content_fr": "Définition de la grève."
+        },
+        {
+          "number": "2",
+          "title": "الشروط",
+          "content_ar": "شروط ممارسة الإضراب.",
+          "content_fr": "Conditions d'exercice du droit de grève."
+        },
+        {
+          "number": "3",
+          "title": "الإخطار",
+          "content_ar": "إخطار الإدارة.",
+          "content_fr": "Information de l'administration."
+        },
+        {
+          "number": "5",
+          "title": "الخدمات الضرورية",
+          "content_ar": "الخدماتMinimales.",
+          "content_fr": "Services minimums."
+        },
+        {
+          "number": "7",
+          "title": "الحظر",
+          "content_ar": "حظر الإضراب في certains sectors.",
+          "content_fr": "Interdiction de grève dans certains secteurs."
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title_ar": "المرسوم التنفيذي المتعلق بالتنظيم المالي للولايات",
+      "title_fr": "Décret Exécutif Relative à l'Organisation Financière des Wilayas",
+      "reference_number": "المرسوم التنفيذي رقم 21-179",
+      "law_type": "مرسوم تنفيذي",
+      "year": 2021,
+      "jorf_issue_number": 35,
+      "date_published": "2021-05-04",
+      "full_text_ar": "مرسوم التنظيم المالي...",
+      "full_text_fr": "Décret sur l'organisation financière...",
+      "category": "إدارة محلية",
+      "articles": [
+        {
+          "number": "1",
+          "title": "الميزانية",
+          "content_ar": "ميزانية الولاية.",
+          "content_fr": "Budget de la wilaya."
+        },
+        {
+          "number": "2",
+          "title": "الإيرادات",
+          "content_ar": "إيرادات الولاية.",
+          "content_fr": "Recettes de la wilaya."
+        },
+        {
+          "number": "4",
+          "title": "النفقات",
+          "content_ar": "نفقات الولاية.",
+          "content_fr": "Dépenses de la wilaya."
+        },
+        {
+          "number": "6",
+          "title": "الحساب",
+          "content_ar": "الحساب الإداري.",
+          "content_fr": "Compte administratif."
+        },
+        {
+          "number": "8",
+          "title": "المراقبة",
+          "content_ar": "مراقبة المالية.",
+          "content_fr": "Contrôle financier."
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "title_ar": "المنشور الوزاري المتعلق بتطبيق قانون الصفقات العمومية",
+      "title_fr": "Circulaire Ministérielle Relative à l'Application de la Loi sur les Marchés Publics",
+      "reference_number": "المنشور الوزاري رقم 2016-01",
+      "law_type": "منشور وزاري",
+      "year": 2016,
+      "jorf_issue_number": null,
+      "date_published": "2016-02-15",
+      "issuing_authority": "وزارة المالية",
+      "full_text_ar": "منشور الصفقات العمومية...",
+      "full_text_fr": "Circulaire sur les marchés publics...",
+      "category": "مناشير وزارية",
+      "articles": [
+        {
+          "number": "1",
+          "title": "التطبيق",
+          "content_ar": "تطبيق قانون الصفقات.",
+          "content_fr": "Application de la loi sur les marchés."
+        },
+        {
+          "number": "2",
+          "title": "الإجراءات",
+          "content_ar": "إجراءات الصفقات.",
+          "content_fr": "Procédures des marchés."
+        },
+        {
+          "number": "3",
+          "title": "الرقابة",
+          "content_ar": "رقابة الصفقات.",
+          "content_fr": "Contrôle des marchés."
+        },
+        {
+          "number": "4",
+          "title": "التقارير",
+          "content_ar": "تقارير دورية.",
+          "content_fr": "Rapports périodiques."
+        },
+        {
+          "number": "5",
+          "title": "التكوين",
+          "content_ar": "تكوين المستخدمين.",
+          "content_fr": "Formation des agents."
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "title_ar": "المنشور الوزاري المتعلق بإجراءات التوظيف في الوظيف العمومي",
+      "title_fr": "Circulaire Ministérielle Relative aux Procédures de Recrutement dans la Fonction Publique",
+      "reference_number": "المنشور رقم 2019-003",
+      "law_type": "منشور",
+      "year": 2019,
+      "jorf_issue_number": null,
+      "date_published": "2019-06-10",
+      "issuing_authority": "وزارة الوظيف العمومي",
+      "full_text_ar": "منشور التوظيف...",
+      "full_text_fr": "Circulaire sur le recrutement...",
+      "category": "مناشير وزارية",
+      "articles": [
+        {
+          "number": "1",
+          "title": "مسابقات التوظيف",
+          "content_ar": "مسابقات التوظيف.",
+          "content_fr": "Concours de recrutement."
+        },
+        {
+          "number": "2",
+          "title": "الملفات",
+          "content_ar": "ملفات الترشح.",
+          "content_fr": "Dossiers de candidature."
+        },
+        {
+          "number": "3",
+          "title": "الاختبارات",
+          "content_ar": "اختبارات التوظيف.",
+          "content_fr": "Épreuves de recrutement."
+        },
+        {
+          "number": "4",
+          "title": "الترتيب",
+          "content_ar": "ترتيب الناجحين.",
+          "content_fr": "Classement des candidats."
+        },
+        {
+          "number": "5",
+          "title": "التعيين",
+          "content_ar": "تعيين المعنيين.",
+          "content_fr": "Nomination des intéressés."
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "title_ar": "تعليمة إطار حوكمة المؤسسات العمومية",
+      "title_fr": "Instruction Cadre de Gouvernance des Établissements Publics",
+      "reference_number": "التعليمة رقم 2022-07",
+      "law_type": "تعليمة",
+      "year": 2022,
+      "jorf_issue_number": null,
+      "date_published": "2022-09-01",
+      "issuing_authority": "رئاسة الحكومة",
+      "full_text_ar": "تعليمة حوكمة المؤسسات...",
+      "full_text_fr": "Instruction de gouvernance...",
+      "category": "مناشير وزارية",
+      "articles": [
+        {
+          "number": "1",
+          "title": "المبادئ",
+          "content_ar": "مبادئ الحوكمة.",
+          "content_fr": "Principes de gouvernance."
+        },
+        {
+          "number": "2",
+          "title": "مجلس الإدارة",
+          "content_ar": "مجلس الإدارة.",
+          "content_fr": "Conseil d'administration."
+        },
+        {
+          "number": "3",
+          "title": "الشفافية",
+          "content_ar": "الشفافية في الإدارة.",
+          "content_fr": "Transparence dans la gestion."
+        },
+        {
+          "number": "4",
+          "title": "المحاسبة",
+          "content_ar": "المحاسبة والمراقبة.",
+          "content_fr": "Redevabilité et contrôle."
+        },
+        {
+          "number": "5",
+          "title": "التقييم",
+          "content_ar": "تقييم الأداء.",
+          "content_fr": "Évaluation de la performance."
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "title_ar": "القانون المدني",
+      "title_fr": "Code Civil",
+      "reference_number": "الأمر رقم 75-58",
+      "law_type": "أمر",
+      "year": 1975,
+      "jorf_issue_number": 78,
+      "date_published": "1975-09-26",
+      "full_text_ar": "القانون المدني...",
+      "full_text_fr": "Code civil...",
+      "category": "قانون مدني",
+      "articles": [
+        {
+          "number": "1",
+          "title": "طبيعة الالتزام",
+          "content_ar": "طبيعة الالتزام.",
+          "content_fr": "Nature de l'obligation."
+        },
+        {
+          "number": "3",
+          "title": "التعاقد",
+          "content_ar": "آليات التعاقد.",
+          "content_fr": "Conclusion du contrat."
+        },
+        {
+          "number": "5",
+          "title": "الإثبات",
+          "content_ar": "وسائل الإثبات.",
+          "content_fr": "Moyen de preuve."
+        },
+        {
+          "number": "7",
+          "title": "التنفيذ",
+          "content_ar": "تنفيذ الالتزام.",
+          "content_fr": "Exécution de l'obligation."
+        },
+        {
+          "number": "10",
+          "title": "المسؤولية",
+          "content_ar": "المسؤولية المدنية.",
+          "content_fr": "Responsabilité civile."
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "title_ar": "قانون العقوبات",
+      "title_fr": "Code Pénal",
+      "reference_number": "الأمر رقم 66-156",
+      "law_type": "أمر",
+      "year": 1966,
+      "jorf_issue_number": 49,
+      "date_published": "1966-06-08",
+      "full_text_ar": "قانون العقوبات...",
+      "full_text_fr": "Code pénal...",
+      "category": "قانون جنائي",
+      "articles": [
+        {
+          "number": "1",
+          "title": "المبادئ",
+          "content_ar": "مبادئ القانون الجنائي.",
+          "content_fr": "Principes du droit pénal."
+        },
+        {
+          "number": "3",
+          "title": "الجريمة",
+          "content_ar": "تعريف الجريمة.",
+          "content_fr": "Définition du crime."
+        },
+        {
+          "number": "5",
+          "title": "العقوبة",
+          "content_ar": "أنواع العقوبات.",
+          "content_fr": "Types de peines."
+        },
+        {
+          "number": "7",
+          "title": "الظروف المخففة",
+          "content_ar": "الظروف المخففة.",
+          "content_fr": "Circonstances atténuantes."
+        },
+        {
+          "number": "10",
+          "title": "التكرار",
+          "content_ar": "جريمة التكرار.",
+          "content_fr": "Récidive."
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "title_ar": "قانون الأسرة",
+      "title_fr": "Code de la Famille",
+      "reference_number": "القانون رقم 84-11",
+      "law_type": "قانون",
+      "year": 1984,
+      "jorf_issue_number": 24,
+      "date_published": "1984-06-09",
+      "full_text_ar": "قانون الأسرة...",
+      "full_text_fr": "Code de la famille...",
+      "category": "قانون أسري",
+      "articles": [
+        {
+          "number": "1",
+          "title": "الزواج",
+          "content_ar": "أحكام الزواج.",
+          "content_fr": "Dispositions sur le mariage."
+        },
+        {
+          "number": "3",
+          "title": "أركان الزواج",
+          "content_ar": "أركان وم شروط الزواج.",
+          "content_fr": "Conditions du mariage."
+        },
+        {
+          "number": "5",
+          "title": "الولاية",
+          "content_ar": "ولاية الزواج.",
+          "content_fr": "Tutelle matrimoniale."
+        },
+        {
+          "number": "8",
+          "title": "الطلاق",
+          "content_ar": "أحكام الطلاق.",
+          "content_fr": "Dispositions sur le divorce."
+        },
+        {
+          "number": "12",
+          "title": "الحضانة",
+          "content_ar": "أحكام الحضانة.",
+          "content_fr": "Dispositions sur la garde."
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "title_ar": "قانون العمل",
+      "title_fr": "Code du Travail",
+      "reference_number": "القانون رقم 90-11",
+      "law_type": "قانون",
+      "year": 1990,
+      "jorf_issue_number": 17,
+      "date_published": "1990-04-21",
+      "full_text_ar": "قانون العمل...",
+      "full_text_fr": "Code du travail...",
+      "category": "قانون عمل",
+      "articles": [
+        {
+          "number": "1",
+          "title": "التعريفات",
+          "content_ar": "تعريفات قانون العمل.",
+          "content_fr": "Définitions du code du travail."
+        },
+        {
+          "number": "3",
+          "title": "العقد",
+          "content_ar": "عقد العمل.",
+          "content_fr": "Contrat de travail."
+        },
+        {
+          "number": "5",
+          "title": "وقت العمل",
+          "content_ar": "وقت العمل القانوني.",
+          "content_fr": "Temps de travail légal."
+        },
+        {
+          "number": "8",
+          "title": "الأجور",
+          "content_ar": "أحكام الأجور.",
+          "content_fr": "Dispositions sur les salaires."
+        },
+        {
+          "number": "12",
+          "title": "الإنهاء",
+          "content_ar": "إنهاء عقد العمل.",
+          "content_fr": "Rupture du contrat de travail."
+        }
+      ]
+    }
+  ]
+}
