@@ -23,10 +23,12 @@ export async function GET() {
         await prisma.law.create({
           data: {
             ...law,
+            titleEn: law.titleFr,
             publicationDate: `${law.year}-01-01`,
             journalOfficiel: `JORF ${law.jorfNumber}/${law.jorfYear}`,
             descriptionAr: law.titleAr,
             descriptionFr: law.titleFr,
+            descriptionEn: law.titleFr,
             contentAr: law.titleAr,
             contentFr: law.titleFr,
             pdfUrlAr: `https://www.joradp.dz/FTP/jo-arabe/${law.jorfYear}/A${law.jorfYear}${String(law.jorfNumber).padStart(3,'0')}.pdf`,
@@ -39,7 +41,7 @@ export async function GET() {
     }
     const count = await prisma.law.count();
     return NextResponse.json({ success: true, inserted, total: count });
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

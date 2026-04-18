@@ -8,7 +8,7 @@ export async function GET() {
       status: 'ok',
       laws: count 
     });
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json({ 
       status: 'error', 
       message: error.message 
