@@ -3,7 +3,7 @@ import { prisma } from '@/lib/db';
 import { LAWS_DATA } from '@/lib/joradp';
 import { buildJoradpUrl } from '@/lib/joradp';
 
-export async function POST(request: Request) {
+export async function POST() {
   try {
     const results = { inserted: 0, updated: 0, errors: 0 };
     
@@ -46,7 +46,6 @@ export async function POST(request: Request) {
         }
       } catch (e) {
         results.errors++;
-        console.error(`Error upserting ${law.referenceNumber}:`, e);
       }
     }
     
@@ -57,13 +56,18 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       ...results,
-      totalVerified: total,
+      total,
     });
   } catch (error) {
-    console.error('Seed error:', error);
-    return NextResponse.json(
-      { error: 'Seed failed' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
+export async function GET() {
+  try {
+    const count = await prisma.law.count();
+    return NextResponse.json({ count });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
