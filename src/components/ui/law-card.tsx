@@ -17,12 +17,16 @@ interface LawCardProps {
   descriptionAr: string;
   descriptionFr: string;
   descriptionEn: string;
+  contentAr?: string | null;
+  contentFr?: string | null;
   isNew?: boolean;
   isPremium?: boolean;
   language: 'ar' | 'fr' | 'en';
   onRead: (id: string) => void;
   onDownload: (id: string) => void;
   sourceUrl?: string | null;
+  pdfUrlAr?: string | null;
+  pdfUrlFr?: string | null;
 }
 
 const categoryIcons: Record<string, React.ElementType> = {
@@ -50,20 +54,22 @@ export function LawCard({
   descriptionAr,
   descriptionFr,
   descriptionEn,
+  contentAr,
+  contentFr,
   isNew,
   isPremium,
   language,
   onRead,
   onDownload,
   sourceUrl,
+  pdfUrlAr,
+  pdfUrlFr,
 }: LawCardProps) {
   const Icon = categoryIcons[category] || BookOpen;
   const title = language === 'ar' ? titleAr : language === 'fr' ? titleFr : titleEn;
   const description = language === 'ar' ? descriptionAr : language === 'fr' ? descriptionFr : descriptionEn;
-
-  const handleDownload = () => {
-    onDownload(id);
-  };
+  const hasContent = contentAr || contentFr;
+  const hasPdf = pdfUrlAr || pdfUrlFr;
 
   return (
     <Card className="group hover:shadow-lg transition-shadow">
@@ -105,7 +111,16 @@ export function LawCard({
           >
             {language === 'ar' ? 'اقرأ' : language === 'fr' ? 'Lire' : 'Read'}
           </button>
-          {sourceUrl ? (
+          {pdfUrlAr || pdfUrlFr ? (
+            <a
+              href={(language === 'ar' ? pdfUrlAr : pdfUrlFr) || pdfUrlAr || pdfUrlFr || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 text-sm font-medium border border-navy text-navy rounded-lg hover:bg-navy hover:text-white transition-colors flex items-center gap-1"
+            >
+              PDF
+            </a>
+          ) : sourceUrl ? (
             <Link
               href={sourceUrl}
               target="_blank"
@@ -116,12 +131,9 @@ export function LawCard({
               {language === 'ar' ? 'المصدر' : language === 'fr' ? 'Source' : 'Source'}
             </Link>
           ) : (
-            <button
-              onClick={handleDownload}
-              className="px-4 py-2 text-sm font-medium border border-navy text-navy rounded-lg hover:bg-navy hover:text-white transition-colors"
-            >
-              {language === 'ar' ? 'PDF' : 'PDF'}
-            </button>
+            <span className="px-4 py-2 text-sm font-medium border border-slate-300 text-slate-300 rounded-lg cursor-not-allowed opacity-50">
+              PDF
+            </span>
           )}
         </div>
       </CardContent>
