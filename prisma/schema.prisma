@@ -40,12 +40,14 @@ model Law {
   descriptionEn      String
   contentAr          String      @db.Text
   contentFr          String      @db.Text
+  contentEn          String      @db.Text
   isPremium          Boolean     @default(false)
   isVerified         Boolean     @default(false)
   source            String?
   sourceUrl          String?
   pdfUrlAr           String?
   pdfUrlFr           String?
+  pdfUrlEn           String?
   jorfYear           Int?
   jorfNumber         Int?
   searchVectorAr     String?

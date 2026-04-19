@@ -5,52 +5,54 @@ const prisma = new PrismaClient();
 // Real Algerian Administrative Laws, Decrees, and Circulars
 const laws = [
   // Administrative & Public Administration
-  {
-    id: 'law_adm_001',
-    titleAr: 'الإدارة العمومية',
-    titleFr: 'Loi sur la Fonction Publique',
-    titleEn: 'Civil Service Law',
-    category: 'إداري',
-    lawType: 'loi',
-    referenceNumber: 'LOI-84-11',
-    year: 1984,
-    publicationDate: '1984-04-09',
-    journalOfficiel: 'الجريدة الرسمية عدد 24',
-    descriptionAr: 'القانون المتعلق بالإدارة العمومية والعمال',
-    descriptionFr: 'Loi relative à la fonction publique et aux agents publics',
-    descriptionEn: 'Law on Civil Service and Public Employees',
-    contentAr: 'أحكام تسيير الموارد البشرية في القطاع الإداري',
-    contentFr: 'Dispositions relatives à la gestion des ressources humaines dans le secteur administratif',
-    jorfYear: 1984,
-    jorfNumber: 24,
-    source: ' Ministry of Public Service',
-    sourceUrl: 'https://www.joradp.dz/',
-    isPremium: false,
-    isVerified: true,
-  },
-  {
-    id: 'law_adm_002',
-    titleAr: 'الميثاق الوطني للتمييز',
-    titleFr: 'Charte Nationale de la Fonction Publique',
-    titleEn: 'National Civil Service Charter',
-    category: 'إداري',
-    lawType: 'loi',
-    referenceNumber: 'LOI-90-11',
-    year: 1990,
-    publicationDate: '1990-04-14',
-    journalOfficiel: 'الجريدة الرسمية عدد 24',
-    descriptionAr: 'ميثاق تسيير الإدارة العمومية',
-    descriptionFr: 'Charte de gestion de la fonction publique',
-    descriptionEn: 'Charter for Civil Service Management',
-    contentAr: 'أحكام الميثاق الوطني للعمل',
-    contentFr: 'Dispositions de la charte nationale du travail',
-    jorfYear: 1990,
-    jorfNumber: 24,
-    source: 'Ministère de la Fonction Publique',
-    sourceUrl: 'https://www.joradp.dz/',
-    isPremium: false,
-    isVerified: true,
-  },
+   {
+     id: 'law_adm_001',
+     titleAr: 'الإدارة العمومية',
+     titleFr: 'Loi sur la Fonction Publique',
+     titleEn: 'Civil Service Law',
+     category: 'إداري',
+     lawType: 'loi',
+     referenceNumber: 'LOI-84-11',
+     year: 1984,
+     publicationDate: '1984-04-09',
+     journalOfficiel: 'الجريدة الرسمية عدد 24',
+     descriptionAr: 'القانون المتعلق بالإدارة العمومية والعمال',
+     descriptionFr: 'Loi relative à la fonction publique et aux agents publics',
+     descriptionEn: 'Law on Civil Service and Public Employees',
+     contentAr: 'أحكام تسيير الموارد البشرية في القطاع الإداري',
+     contentFr: 'Dispositions relatives à la gestion des ressources humaines dans le secteur administratif',
+     contentEn: 'Provisions on human resources management in the administrative sector', // Added English content
+     jorfYear: 1984,
+     jorfNumber: 24,
+     source: ' Ministry of Public Service',
+     sourceUrl: 'https://www.joradp.dz/',
+     isPremium: false,
+     isVerified: true,
+   },
+   {
+     id: 'law_adm_002',
+     titleAr: 'الميثاق الوطني للتمييز',
+     titleFr: 'Charte Nationale de la Fonction Publique',
+     titleEn: 'National Civil Service Charter',
+     category: 'إداري',
+     lawType: 'loi',
+     referenceNumber: 'LOI-90-11',
+     year: 1990,
+     publicationDate: '1990-04-14',
+     journalOfficiel: 'الجريدة الرسمية عدد 24',
+     descriptionAr: 'ميثاق تسيير الإدارة العمومية',
+     descriptionFr: 'Charte de gestion de la fonction publique',
+     descriptionEn: 'Charter for Civil Service Management',
+     contentAr: 'أحكام الميثاق الوطني للعمل',
+     contentFr: 'Dispositions de la charte nationale du travail',
+     contentEn: 'Provisions of the National Civil Service Charter', // Added English content
+     jorfYear: 1990,
+     jorfNumber: 24,
+     source: 'Ministère de la Fonction Publique',
+     sourceUrl: 'https://www.joradp.dz/',
+     isPremium: false,
+     isVerified: true,
+   },
   {
     id: 'law_adm_003',
     titleAr: 'قانون الجماعات المحلية',
@@ -485,18 +487,22 @@ async function main() {
   console.log('✅ Existing laws deleted\n');
 
   console.log('📜 Seeding new Algerian Administrative Laws...');
-  for (const law of laws) {
-    try {
-      await prisma.law.upsert({
-        where: { referenceNumber: law.referenceNumber },
-        update: law,
-        create: law,
-      });
-      console.log(`  ✓ ${law.lawType.toUpperCase()}: ${law.titleFr} (${law.year})`);
-    } catch (e) {
-      console.log(`  ✗ ${law.titleFr}: ${e}`);
-    }
-  }
+   for (const law of laws) {
+     try {
+       const lawWithContentEn = {
+         ...law,
+         contentEn: law.contentEn || law.titleEn || law.contentFr,
+       };
+       await prisma.law.upsert({
+         where: { referenceNumber: law.referenceNumber },
+         update: lawWithContentEn,
+         create: lawWithContentEn,
+       });
+       console.log(`  ✓ ${law.lawType.toUpperCase()}: ${law.titleFr} (${law.year})`);
+     } catch (e) {
+       console.log(`  ✗ ${law.titleFr}: ${e}`);
+     }
+   }
 
   const count = await prisma.law.count();
   console.log(`\n✅ Database seeded with ${count} laws!`);

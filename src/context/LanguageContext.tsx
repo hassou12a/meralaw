@@ -12,9 +12,10 @@ interface LanguageContextType {
 }
 
 const translations: Record<Language, Record<string, string>> = {
-  ar: {
-    // Navigation
-    'nav.home': 'الرئيسية',
+   ar: {
+      // Navigation
+      'nav.home': 'الرئيسية',
+      'admin.feed.daysBack': 'الأيام الماضية',
     'nav.laws': 'المكتبات القانونية',
     'nav.search': 'البحث',
     'nav.assistant': 'المساعد الذكي',
@@ -84,8 +85,15 @@ const translations: Record<Language, Record<string, string>> = {
     'form.note': 'ملاحظة',
     'form.message': 'رسالتك',
     
-    // Professions
-    'profession.lawyer': 'محامي',
+     // Professions
+     'profession.lawyer': 'محامي',
+     'admin.feed': 'التغذية من المصادر الرسمية',
+     'admin.feed.maxResults': 'الحد الأقصى للنتائج',
+     'admin.feed.daysBack': 'الأيام الماضية',
+     'feed.results': 'النتائج',
+     'feed.selectLaw': 'اختيار هذا القانون',
+     'feed.selected': 'محدد',
+     'btn.search': 'بحث',
     'profession.judge': 'قاضي',
     'profession.bailiff': 'محضر',
     'profession.notary': 'موثق',
@@ -174,7 +182,10 @@ const translations: Record<Language, Record<string, string>> = {
     'law.publicationDate': 'تاريخ النشر',
     'law.journalOfficiel': 'الجريدة الرسمية',
     'law.description': 'الوصف',
-    'law.content': 'المحتوى',
+     'law.content': 'المحتوى',
+     'law.pdf_ar': 'التحميل بالعربية',
+     'law.pdf_fr': 'التحميل بالفرنسية',
+     'law.pdf_en': 'التحميل بالإنجليزية',
     
     // Premium
     'premium.required': 'يتطلب اشتراك Premium',
@@ -387,7 +398,10 @@ const translations: Record<Language, Record<string, string>> = {
     'law.publicationDate': 'Date de publication',
     'law.journalOfficiel': 'Journal Officiel',
     'law.description': 'Description',
-    'law.content': 'Contenu',
+     'law.content': 'Contenu',
+     'law.pdf_ar': 'Télécharger en arabe',
+     'law.pdf_fr': 'Télécharger en français',
+     'law.pdf_en': 'Télécharger en anglais',
     
     // Premium
     'premium.required': 'Abonnement Premium requis',
@@ -592,7 +606,11 @@ const translations: Record<Language, Record<string, string>> = {
     'filter.year': 'Year',
     'filter.type': 'Type',
     'filter.all': 'All',
-    'filter.clear': 'Clear Filters',
+     'filter.clear': 'Clear Filters',
+     'admin.feed': 'Feed from Official Sources',
+     'admin.feed.maxResults': 'Max Results',
+     'admin.feed.daysBack': 'Days Back',
+     'btn.search': 'Search',
     
     // Law details
     'law.reference': 'Reference',
@@ -600,7 +618,10 @@ const translations: Record<Language, Record<string, string>> = {
     'law.publicationDate': 'Publication Date',
     'law.journalOfficiel': 'Official Gazette',
     'law.description': 'Description',
-    'law.content': 'Content',
+     'law.content': 'Content',
+     'law.pdf_ar': 'Download Arabic PDF',
+     'law.pdf_fr': 'Download French PDF',
+     'law.pdf_en': 'Download English PDF',
     
     // Premium
     'premium.required': 'Premium Subscription Required',

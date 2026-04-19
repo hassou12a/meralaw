@@ -20,22 +20,23 @@ export async function GET() {
     for (const law of LAWS) {
       const existing = await prisma.law.findUnique({ where: { referenceNumber: law.referenceNumber } });
       if (!existing) {
-        await prisma.law.create({
-          data: {
-            ...law,
-            titleEn: law.titleFr,
-            publicationDate: `${law.year}-01-01`,
-            journalOfficiel: `JORF ${law.jorfNumber}/${law.jorfYear}`,
-            descriptionAr: law.titleAr,
-            descriptionFr: law.titleFr,
-            descriptionEn: law.titleFr,
-            contentAr: law.titleAr,
-            contentFr: law.titleFr,
-            pdfUrlAr: `https://www.joradp.dz/FTP/jo-arabe/${law.jorfYear}/A${law.jorfYear}${String(law.jorfNumber).padStart(3,'0')}.pdf`,
-            pdfUrlFr: `https://www.joradp.dz/FTP/jo-francais/${law.jorfYear}/F${law.jorfYear}${String(law.jorfNumber).padStart(3,'0')}.pdf`,
-            isVerified: true,
-          },
-        });
+         await prisma.law.create({
+           data: {
+             ...law,
+             titleEn: law.titleFr,
+             publicationDate: `${law.year}-01-01`,
+             journalOfficiel: `JORF ${law.jorfNumber}/${law.jorfYear}`,
+             descriptionAr: law.titleAr,
+             descriptionFr: law.titleFr,
+             descriptionEn: law.titleFr,
+             contentAr: law.titleAr,
+             contentFr: law.titleFr,
+             contentEn: law.titleFr,
+             pdfUrlAr: `https://www.joradp.dz/FTP/jo-arabe/${law.jorfYear}/A${law.jorfYear}${String(law.jorfNumber).padStart(3,'0')}.pdf`,
+             pdfUrlFr: `https://www.joradp.dz/FTP/jo-francais/${law.jorfYear}/F${law.jorfYear}${String(law.jorfNumber).padStart(3,'0')}.pdf`,
+             isVerified: true,
+           },
+         });
         inserted++;
       }
     }

@@ -17,16 +17,16 @@ interface LawCardProps {
   descriptionAr: string;
   descriptionFr: string;
   descriptionEn: string;
-<<<<<<< HEAD
   pdfUrlAr?: string | null;
   pdfUrlFr?: string | null;
+  pdfUrlEn?: string | null;
   contentAr?: string | null;
   contentFr?: string | null;
+  contentEn?: string | null;
   isNew?: boolean;
   isPremium?: boolean;
   language: 'ar' | 'fr' | 'en';
   onRead: (id: string) => void;
-<<<<<<< HEAD
   onDownload: (id: string) => void;
   sourceUrl?: string | null;
 }
@@ -56,19 +56,18 @@ export function LawCard({
   descriptionAr,
   descriptionFr,
   descriptionEn,
-<<<<<<< HEAD
   pdfUrlAr,
   pdfUrlFr,
+  pdfUrlEn,
   contentAr,
   contentFr,
+  contentEn,
   isNew,
   isPremium,
   language,
   onRead,
   onDownload,
   sourceUrl,
-  pdfUrlAr,
-  pdfUrlFr,
 }: LawCardProps) {
   const Icon = categoryIcons[category] || BookOpen;
   const title = language === 'ar' ? titleAr : language === 'fr' ? titleFr : titleEn;

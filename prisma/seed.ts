@@ -54,25 +54,26 @@ async function seedLaws() {
     try {
       const searchContent = buildSearchContent(law);
       
-      const lawData = {
-        titleAr: law.title_ar,
-        titleFr: law.title_fr,
-        titleEn: law.title_fr,
-        referenceNumber: law.reference_number,
-        category: law.category,
-        year: law.year,
-        publicationDate: law.date_published,
-        journalOfficiel: `JORF ${law.jorf_issue_number}/${law.year}`,
-        descriptionAr: `${law.title_ar} - ${law.law_type}`,
-        descriptionFr: `${law.title_fr} - ${law.law_type}`,
-        descriptionEn: `${law.title_fr} - ${law.law_type}`,
-        contentAr: law.full_text_ar || searchContent,
-        contentFr: law.full_text_fr || searchContent,
-        isPremium: false,
-        isVerified: true,
-        source: 'joradp.dz',
-        tags: [law.category, law.law_type],
-      };
+       const lawData = {
+         titleAr: law.title_ar,
+         titleFr: law.title_fr,
+         titleEn: law.title_fr,
+         referenceNumber: law.reference_number,
+         category: law.category,
+         year: law.year,
+         publicationDate: law.date_published,
+         journalOfficiel: `JORF ${law.jorf_issue_number}/${law.year}`,
+         descriptionAr: `${law.title_ar} - ${law.law_type}`,
+         descriptionFr: `${law.title_fr} - ${law.law_type}`,
+         descriptionEn: `${law.title_fr} - ${law.law_type}`,
+         contentAr: law.full_text_ar || searchContent,
+         contentFr: law.full_text_fr || searchContent,
+         contentEn: law.full_text_fr || searchContent, // Using French as fallback for English
+         isPremium: false,
+         isVerified: true,
+         source: 'joradp.dz',
+         tags: [law.category, law.law_type],
+       };
 
       const existing = await prisma.law.findUnique({
         where: { referenceNumber: law.reference_number },

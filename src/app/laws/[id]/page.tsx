@@ -33,7 +33,11 @@ interface Law {
   descriptionEn: string;
   contentAr: string;
   contentFr: string;
+  contentEn: string;
   isPremium: boolean;
+  pdfUrlAr?: string | null;
+  pdfUrlFr?: string | null;
+  pdfUrlEn?: string | null;
 }
 
 const categoryIcons: Record<string, React.ElementType> = {
@@ -117,7 +121,7 @@ export default function LawDetailPage() {
   const Icon = categoryIcons[law.category] || BookOpen;
   const title = language === 'ar' ? law.titleAr : language === 'fr' ? law.titleFr : law.titleEn;
   const description = language === 'ar' ? law.descriptionAr : language === 'fr' ? law.descriptionFr : law.descriptionEn;
-  const content = language === 'ar' ? law.contentAr : language === 'fr' ? law.contentFr : law.contentFr;
+   const content = language === 'ar' ? law.contentAr : language === 'fr' ? law.contentFr : law.contentEn;
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
@@ -187,17 +191,31 @@ export default function LawDetailPage() {
                   <p className="font-medium">{law.category}</p>
                 </div>
 
-                <div className="pt-4 border-t border-slate-200 dark:border-slate-700 flex gap-2">
-                  <Button variant="outline" className="flex-1">
-                    <Download className="h-4 w-4" />
-                    PDF
-                  </Button>
-                  <Link href="/search" className="flex-1">
-                    <Button variant="outline" className="w-full">
-                      {t['nav.search']}
-                    </Button>
-                  </Link>
-                </div>
+                 <div className="pt-4 border-t border-slate-200 dark:border-slate-700 flex gap-2 flex-wrap">
+                   {law.pdfUrlAr && (
+                     <Button variant="outline" className="flex-1 md:flex-auto">
+                       <Download className="h-4 w-4 mr-2" />
+                       {t['law.pdf_ar']}
+                     </Button>
+                   )}
+                   {law.pdfUrlFr && (
+                     <Button variant="outline" className="flex-1 md:flex-auto">
+                       <Download className="h-4 w-4 mr-2" />
+                       {t['law.pdf_fr']}
+                     </Button>
+                   )}
+                   {law.pdfUrlEn && (
+                     <Button variant="outline" className="flex-1 md:flex-auto">
+                       <Download className="h-4 w-4 mr-2" />
+                       {t['law.pdf_en']}
+                     </Button>
+                   )}
+                   <Link href="/search" className="flex-1 md:flex-auto">
+                     <Button variant="outline" className="w-full">
+                       {t['nav.search']}
+                     </Button>
+                   </Link>
+                 </div>
               </CardContent>
             </Card>
           </aside>

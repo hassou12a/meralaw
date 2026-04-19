@@ -13,26 +13,27 @@ export async function POST() {
           where: { referenceNumber: law.referenceNumber },
         });
         
-        const data = {
-          titleAr: law.titleAr,
-          titleFr: law.titleFr,
-          titleEn: law.titleFr,
-          referenceNumber: law.referenceNumber,
-          category: law.category,
-          year: law.jorfYear,
-          publicationDate: `${law.jorfYear}-01-01`,
-          journalOfficiel: `JORF ${law.jorfNumber}/${law.jorfYear}`,
-          descriptionAr: `${law.titleAr} - ${law.category}`,
-          descriptionFr: `${law.titleFr} - ${law.category}`,
-          descriptionEn: `${law.titleFr} - ${law.category}`,
-          contentAr: law.titleAr,
-          contentFr: law.titleFr,
-          jorfYear: law.jorfYear,
-          jorfNumber: law.jorfNumber,
-          pdfUrlAr: buildJoradpUrl(law.jorfYear, law.jorfNumber, 'ar'),
-          pdfUrlFr: buildJoradpUrl(law.jorfYear, law.jorfNumber, 'fr'),
-          isVerified: true,
-        };
+         const data = {
+           titleAr: law.titleAr,
+           titleFr: law.titleFr,
+           titleEn: law.titleFr,
+           referenceNumber: law.referenceNumber,
+           category: law.category,
+           year: law.jorfYear,
+           publicationDate: `${law.jorfYear}-01-01`,
+           journalOfficiel: `JORF ${law.jorfNumber}/${law.jorfYear}`,
+           descriptionAr: `${law.titleAr} - ${law.category}`,
+           descriptionFr: `${law.titleFr} - ${law.category}`,
+           descriptionEn: `${law.titleFr} - ${law.category}`,
+           contentAr: law.titleAr,
+           contentFr: law.titleFr,
+           contentEn: law.titleFr,
+           jorfYear: law.jorfYear,
+           jorfNumber: law.jorfNumber,
+           pdfUrlAr: buildJoradpUrl(law.jorfYear, law.jorfNumber, 'ar'),
+           pdfUrlFr: buildJoradpUrl(law.jorfYear, law.jorfNumber, 'fr'),
+           isVerified: true,
+         };
         
         if (existing) {
           await prisma.law.update({
