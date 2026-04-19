@@ -50,6 +50,7 @@ function LawsContent() {
     pdfUrlFr?: string | null;
     isPremium: boolean;
     createdAt: string;
+    sourceUrl?: string | null;
   }>>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
@@ -299,6 +300,7 @@ function LawsContent() {
                     language={language}
                     onRead={handleRead}
                     onDownload={handleDownload}
+                    sourceUrl={law.sourceUrl}
                   />
                 ))}
               </div>

@@ -43,6 +43,7 @@ model Law {
   isPremium          Boolean     @default(false)
   isVerified         Boolean     @default(false)
   source            String?
+  sourceUrl          String?
   pdfUrlAr           String?
   pdfUrlFr           String?
   jorfYear           Int?
@@ -50,7 +51,9 @@ model Law {
   searchVectorAr     String?
   searchVectorFr     String?
   tags              String[]
+  lawType            String      @default("loi")
   createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
   caseLaws           CaseLaw[]
 }
 
