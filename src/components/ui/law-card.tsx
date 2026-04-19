@@ -2,7 +2,8 @@
 
 import { cn } from '@/lib/utils';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './card';
-import { BookOpen, FileText, Scale, Sparkles } from 'lucide-react';
+import { BookOpen, FileText, Scale, Sparkles, ExternalLink } from 'lucide-react';
+import Link from 'next/link';
 
 interface LawCardProps {
   id: string;
@@ -21,6 +22,7 @@ interface LawCardProps {
   language: 'ar' | 'fr' | 'en';
   onRead: (id: string) => void;
   onDownload: (id: string) => void;
+  sourceUrl?: string | null;
 }
 
 const categoryIcons: Record<string, React.ElementType> = {
@@ -53,10 +55,15 @@ export function LawCard({
   language,
   onRead,
   onDownload,
+  sourceUrl,
 }: LawCardProps) {
   const Icon = categoryIcons[category] || BookOpen;
   const title = language === 'ar' ? titleAr : language === 'fr' ? titleFr : titleEn;
   const description = language === 'ar' ? descriptionAr : language === 'fr' ? descriptionFr : descriptionEn;
+
+  const handleDownload = () => {
+    onDownload(id);
+  };
 
   return (
     <Card className="group hover:shadow-lg transition-shadow">
@@ -98,12 +105,24 @@ export function LawCard({
           >
             {language === 'ar' ? 'اقرأ' : language === 'fr' ? 'Lire' : 'Read'}
           </button>
-          <button
-            onClick={() => onDownload(id)}
-            className="px-4 py-2 text-sm font-medium border border-navy text-navy rounded-lg hover:bg-navy hover:text-white transition-colors"
-          >
-            {language === 'ar' ? 'PDF' : 'PDF'}
-          </button>
+          {sourceUrl ? (
+            <Link
+              href={sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 text-sm font-medium border border-navy text-navy rounded-lg hover:bg-navy hover:text-white transition-colors flex items-center gap-1"
+            >
+              <ExternalLink className="h-3 w-3" />
+              {language === 'ar' ? 'المصدر' : language === 'fr' ? 'Source' : 'Source'}
+            </Link>
+          ) : (
+            <button
+              onClick={handleDownload}
+              className="px-4 py-2 text-sm font-medium border border-navy text-navy rounded-lg hover:bg-navy hover:text-white transition-colors"
+            >
+              {language === 'ar' ? 'PDF' : 'PDF'}
+            </button>
+          )}
         </div>
       </CardContent>
     </Card>

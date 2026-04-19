@@ -38,7 +38,7 @@ export async function GET(request: Request) {
         where,
         orderBy: { createdAt: 'desc' },
         skip: (page - 1) * limit,
-        take: limit,
+        take: limit === -1 ? undefined : limit,
         select: {
           id: true,
           titleAr: true,
@@ -61,6 +61,9 @@ export async function GET(request: Request) {
           pdfUrlAr: true,
           pdfUrlFr: true,
           isVerified: true,
+          source: true,
+          sourceUrl: true,
+          lawType: true,
         },
       }),
       prisma.law.count({ where }),
