@@ -16,11 +16,13 @@ interface LawCardProps {
   descriptionAr: string;
   descriptionFr: string;
   descriptionEn: string;
+  pdfUrlAr?: string | null;
+  pdfUrlFr?: string | null;
   isNew?: boolean;
   isPremium?: boolean;
   language: 'ar' | 'fr' | 'en';
   onRead: (id: string) => void;
-  onDownload: (id: string) => void;
+  onDownload: (id: string, lang: 'ar' | 'fr') => void;
 }
 
 const categoryIcons: Record<string, React.ElementType> = {
@@ -48,6 +50,8 @@ export function LawCard({
   descriptionAr,
   descriptionFr,
   descriptionEn,
+  pdfUrlAr,
+  pdfUrlFr,
   isNew,
   isPremium,
   language,
@@ -98,12 +102,17 @@ export function LawCard({
           >
             {language === 'ar' ? 'اقرأ' : language === 'fr' ? 'Lire' : 'Read'}
           </button>
-          <button
-            onClick={() => onDownload(id)}
-            className="px-4 py-2 text-sm font-medium border border-navy text-navy rounded-lg hover:bg-navy hover:text-white transition-colors"
-          >
-            {language === 'ar' ? 'PDF' : 'PDF'}
-          </button>
+          {(pdfUrlAr || pdfUrlFr) && (
+            <a
+              href={language === 'ar' ? pdfUrlAr || pdfUrlFr : pdfUrlFr || pdfUrlAr || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 text-sm font-medium border border-navy text-navy rounded-lg hover:bg-navy hover:text-white transition-colors flex items-center justify-center"
+              title={language === 'ar' ? 'فتح في الجريدة الرسمية' : language === 'fr' ? 'Ouvrir sur le Journal Officiel' : 'Open on Official Gazette'}
+            >
+              {language === 'ar' ? 'PDF' : 'PDF'}
+            </a>
+          )}
         </div>
       </CardContent>
     </Card>

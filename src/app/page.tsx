@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { DailyTipWidget } from '@/components/ui/DailyTipWidget';
 import { PWAInstallButton } from '@/components/ui/PWAInstallButton';
+import { LatestLawsSection } from '@/components/home/LatestLawsSection';
+import { OfficialSourcesSection } from '@/components/home/OfficialSourcesSection';
 import { useSession } from 'next-auth/react';
 import {
   Scale,
@@ -44,17 +46,17 @@ const features = [
 ];
 
 const categories = [
-  { key: 'categories.constitution', icon: Scale },
-  { key: 'categories.civil', icon: BookOpen },
-  { key: 'categories.civilProcedure', icon: FileText },
-  { key: 'categories.commercial', icon: Scale },
-  { key: 'categories.penal', icon: Shield },
-  { key: 'categories.family', icon: BookOpen },
-  { key: 'categories.labor', icon: FileText },
-  { key: 'categories.admin', icon: Scale },
-  { key: 'categories.decrees', icon: FileText },
-  { key: 'categories.orders', icon: Sparkles },
-  { key: 'categories.circulaires', icon: FileText },
+  { key: 'categories.constitution', canonical: 'دستور', icon: Scale },
+  { key: 'categories.civil', canonical: 'قوانين مرجعية', icon: BookOpen },
+  { key: 'categories.civilProcedure', canonical: 'إجراءات قضائية إدارية', icon: FileText },
+  { key: 'categories.commercial', canonical: 'قوانين مرجعية', icon: Scale },
+  { key: 'categories.penal', canonical: 'قوانين مرجعية', icon: Shield },
+  { key: 'categories.family', canonical: 'قوانين مرجعية', icon: BookOpen },
+  { key: 'categories.labor', canonical: 'قوانين مرجعية', icon: FileText },
+  { key: 'categories.admin', canonical: 'قوانين مرجعية', icon: Scale },
+  { key: 'categories.decrees', canonical: 'المراسيم التنفيذية', icon: FileText },
+  { key: 'categories.orders', canonical: 'الأوامر presidential', icon: Sparkles },
+  { key: 'categories.circulaires', canonical: 'المناشير والتعليمات الوزارية', icon: FileText },
 ];
 
 export default function HomePage() {
@@ -147,6 +149,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Latest Laws Section */}
+      <LatestLawsSection />
+
       {/* Categories Section */}
       <section className="py-20 bg-white dark:bg-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -162,7 +167,7 @@ export default function HomePage() {
               return (
                 <Link
                   key={cat.key}
-                  href={`/laws?category=${encodeURIComponent(t[cat.key])}`}
+                  href={`/laws?category=${encodeURIComponent(cat.canonical)}`}
                   className="flex flex-col items-center gap-3 p-6 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-navy hover:bg-navy/5 transition-all group"
                 >
                   <div className="p-3 bg-navy/10 rounded-xl group-hover:bg-navy group-hover:text-white transition-colors">
@@ -177,6 +182,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Official Sources Section */}
+      <OfficialSourcesSection />
 
       {/* Pricing Preview Section */}
       <section className="py-20 bg-slate-50 dark:bg-slate-900">

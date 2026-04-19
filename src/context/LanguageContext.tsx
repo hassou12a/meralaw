@@ -195,6 +195,35 @@ const translations: Record<Language, Record<string, string>> = {
     'common.close': 'إغلاق',
     'common.back': 'رجوع',
     'common.new': 'جديد',
+    'common.viewAll': 'عرض الكل',
+    'common.openOfficial': 'فتح في الجريدة الرسمية',
+
+    // Latest laws section (home)
+    'home.latest.title': 'أحدث القوانين والمراسيم',
+    'home.latest.subtitle': 'تابع آخر النصوص القانونية المنشورة في الجريدة الرسمية الجزائرية',
+    'home.latest.empty': 'لم يتم نشر قوانين بعد. يرجى المحاولة لاحقاً.',
+    'home.latest.viewAll': 'تصفح المكتبة كاملة',
+
+    // Official sources (home)
+    'home.sources.title': 'المصادر القانونية الرسمية',
+    'home.sources.subtitle': 'روابط مباشرة لأهم المواقع القانونية والمؤسساتية الجزائرية',
+    'home.sources.joradp': 'الجريدة الرسمية للجمهورية الجزائرية',
+    'home.sources.joradpDesc': 'النشر الرسمي للقوانين والمراسيم والأوامر',
+    'home.sources.mjustice': 'وزارة العدل',
+    'home.sources.mjusticeDesc': 'البوابة الرسمية لوزارة العدل الجزائرية',
+    'home.sources.conseilConst': 'المحكمة الدستورية',
+    'home.sources.conseilConstDesc': 'قرارات وآراء المحكمة الدستورية',
+    'home.sources.conseilEtat': 'مجلس الدولة',
+    'home.sources.conseilEtatDesc': 'أعلى جهة قضاء إداري في الجزائر',
+    'home.sources.courSupreme': 'المحكمة العليا',
+    'home.sources.courSupremeDesc': 'أعلى درجة تقاضي في القضاء العادي',
+    'home.sources.apn': 'المجلس الشعبي الوطني',
+    'home.sources.apnDesc': 'الغرفة التشريعية الأولى',
+    'home.sources.conseilNation': 'مجلس الأمة',
+    'home.sources.conseilNationDesc': 'الغرفة التشريعية الثانية',
+    'home.sources.premierMinistre': 'رئاسة الحكومة',
+    'home.sources.premierMinistreDesc': 'البوابة الرسمية لرئاسة الحكومة',
+    'home.sources.visit': 'زيارة الموقع',
   },
   fr: {
     // Navigation
@@ -379,6 +408,35 @@ const translations: Record<Language, Record<string, string>> = {
     'common.close': 'Fermer',
     'common.back': 'Retour',
     'common.new': 'Nouveau',
+    'common.viewAll': 'Voir tout',
+    'common.openOfficial': 'Ouvrir sur le Journal Officiel',
+
+    // Latest laws section (home)
+    'home.latest.title': 'Dernières lois et décrets',
+    'home.latest.subtitle': "Suivez les textes juridiques récemment publiés au Journal Officiel de la République Algérienne",
+    'home.latest.empty': "Aucune loi publiée pour le moment. Veuillez réessayer plus tard.",
+    'home.latest.viewAll': 'Parcourir toute la bibliothèque',
+
+    // Official sources (home)
+    'home.sources.title': 'Sources juridiques officielles',
+    'home.sources.subtitle': 'Liens directs vers les principaux sites juridiques et institutionnels algériens',
+    'home.sources.joradp': 'Journal Officiel de la République Algérienne',
+    'home.sources.joradpDesc': "Publication officielle des lois, décrets et ordonnances",
+    'home.sources.mjustice': 'Ministère de la Justice',
+    'home.sources.mjusticeDesc': "Portail officiel du Ministère de la Justice",
+    'home.sources.conseilConst': 'Cour Constitutionnelle',
+    'home.sources.conseilConstDesc': "Décisions et avis de la Cour Constitutionnelle",
+    'home.sources.conseilEtat': "Conseil d'État",
+    'home.sources.conseilEtatDesc': "Plus haute juridiction administrative d'Algérie",
+    'home.sources.courSupreme': 'Cour Suprême',
+    'home.sources.courSupremeDesc': 'Plus haute juridiction de l’ordre judiciaire',
+    'home.sources.apn': 'Assemblée Populaire Nationale',
+    'home.sources.apnDesc': 'Première chambre législative',
+    'home.sources.conseilNation': 'Conseil de la Nation',
+    'home.sources.conseilNationDesc': 'Seconde chambre législative',
+    'home.sources.premierMinistre': 'Premier Ministère',
+    'home.sources.premierMinistreDesc': 'Portail officiel du Premier Ministère',
+    'home.sources.visit': 'Visiter le site',
   },
   en: {
     // Navigation
@@ -563,6 +621,35 @@ const translations: Record<Language, Record<string, string>> = {
     'common.close': 'Close',
     'common.back': 'Back',
     'common.new': 'New',
+    'common.viewAll': 'View all',
+    'common.openOfficial': 'Open on the Official Gazette',
+
+    // Latest laws section (home)
+    'home.latest.title': 'Latest laws and decrees',
+    'home.latest.subtitle': 'Follow the legal texts recently published in the Algerian Official Gazette',
+    'home.latest.empty': 'No laws published yet. Please try again later.',
+    'home.latest.viewAll': 'Browse the full library',
+
+    // Official sources (home)
+    'home.sources.title': 'Official legal sources',
+    'home.sources.subtitle': 'Direct links to the main Algerian legal and institutional portals',
+    'home.sources.joradp': 'Algerian Official Gazette',
+    'home.sources.joradpDesc': 'Official publication of laws, decrees and orders',
+    'home.sources.mjustice': 'Ministry of Justice',
+    'home.sources.mjusticeDesc': 'Official portal of the Algerian Ministry of Justice',
+    'home.sources.conseilConst': 'Constitutional Court',
+    'home.sources.conseilConstDesc': 'Decisions and opinions of the Constitutional Court',
+    'home.sources.conseilEtat': 'Council of State',
+    'home.sources.conseilEtatDesc': 'Highest administrative court of Algeria',
+    'home.sources.courSupreme': 'Supreme Court',
+    'home.sources.courSupremeDesc': 'Highest court of the judicial order',
+    'home.sources.apn': 'People’s National Assembly',
+    'home.sources.apnDesc': 'First legislative chamber',
+    'home.sources.conseilNation': 'Council of the Nation',
+    'home.sources.conseilNationDesc': 'Second legislative chamber',
+    'home.sources.premierMinistre': 'Prime Ministry',
+    'home.sources.premierMinistreDesc': 'Official portal of the Prime Ministry',
+    'home.sources.visit': 'Visit website',
   },
 };
 

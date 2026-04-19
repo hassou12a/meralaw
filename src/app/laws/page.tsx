@@ -46,6 +46,8 @@ function LawsContent() {
     descriptionAr: string;
     descriptionFr: string;
     descriptionEn: string;
+    pdfUrlAr?: string | null;
+    pdfUrlFr?: string | null;
     isPremium: boolean;
     createdAt: string;
   }>>([]);
@@ -290,6 +292,8 @@ function LawsContent() {
                     descriptionAr={law.descriptionAr}
                     descriptionFr={law.descriptionFr}
                     descriptionEn={law.descriptionEn}
+                    pdfUrlAr={law.pdfUrlAr}
+                    pdfUrlFr={law.pdfUrlFr}
                     isNew={isNewLaw(law.createdAt)}
                     isPremium={law.isPremium}
                     language={language}
