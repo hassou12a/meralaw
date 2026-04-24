@@ -88,6 +88,7 @@ export function Navbar() {
   }, []);
 
   const isPremium = session?.user?.plan === 'PRO';
+  const isAdmin = (session?.user as any)?.isAdmin === true;
   const langTrans = translations[language];
 
   const navLinks = [
@@ -102,7 +103,9 @@ export function Navbar() {
 
   const userLinks = session
     ? [
-        { href: '/dashboard', label: langTrans.dashboard, icon: LayoutDashboard },
+        isAdmin 
+          ? { href: '/admin', label: langTrans.dashboard, icon: LayoutDashboard }
+          : { href: '/dashboard', label: langTrans.dashboard, icon: LayoutDashboard },
         { href: '/profile', label: langTrans.profile, icon: User },
       ]
     : [];

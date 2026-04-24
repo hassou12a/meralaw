@@ -36,6 +36,7 @@ export default function AssistantPage() {
   const { language, translations: t } = useLanguage();
   const { data: session, status } = useSession();
   const isPremium = session?.user?.plan === 'PRO';
+  const isAdmin = (session?.user as any)?.isAdmin === true;
 
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
@@ -144,7 +145,7 @@ export default function AssistantPage() {
     );
   }
 
-  if (!isPremium) {
+  if (!isPremium && !isAdmin) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 p-4">
         <Card className="max-w-md w-full text-center">

@@ -19,3 +19,16 @@ export function isNewLaw(createdAt: Date): boolean {
   thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
   return createdAt > thirtyDaysAgo;
 }
+
+// Export to Text file
+export function exportTextFile(content: string, filename: string) {
+  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}

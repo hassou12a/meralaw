@@ -8,7 +8,9 @@ async function main() {
 
   const admin = await prisma.user.upsert({
     where: { email: 'admin@meralaw.dz' },
-    update: {},
+    update: {
+      isAdmin: true
+    },
     create: {
       id: 'cl7kj9v1o0001',
       email: 'admin@meralaw.dz',
@@ -16,6 +18,7 @@ async function main() {
       name: 'Prof. HOUSSEM ABDALLAH MERAMRIA',
       profession: 'Avocat',
       plan: 'ADMIN',
+      isAdmin: true,
     },
   });
 

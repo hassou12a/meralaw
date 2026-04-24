@@ -7,6 +7,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useSession } from 'next-auth/react';
+import { exportTextFile } from '@/lib/utils';
 import {
   ArrowRight,
   ArrowLeft,
@@ -67,6 +68,14 @@ export default function LawDetailPage() {
   const { language, translations: t, dir } = useLanguage();
   const { data: session } = useSession();
   const isPremium = session?.user?.plan === 'PRO';
+  const isAdmin = (session?.user as any)?.isAdmin === true;
+
+  const exportToText = () => {
+    if (!law) return;
+    const content = language === 'ar' ? law.contentAr : language === 'fr' ? law.contentFr : law.contentEn;
+    const text = `${title}\n\n${law.referenceNumber} - ${law.year}\n\n${description}\n\n${content}`;
+    exportTextFile(text, `${law.referenceNumber.replace(/\//g, '-')}.txt`);
+  };
 
   const [law, setLaw] = useState<Law | null>(null);
   const [loading, setLoading] = useState(true);
@@ -241,19 +250,30 @@ export default function LawDetailPage() {
                        </Button>
                      </a>
                    )}
-                   {law.pdfUrlEn && (
-                     <a
-                       href={law.pdfUrlEn}
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       className="flex-1 md:flex-auto"
-                     >
-                       <Button variant="outline" className="w-full">
-                         <Download className="h-4 w-4 mr-2" />
-                         {t['law.pdf_en']}
-                       </Button>
-                     </a>
-                   )}
+                    {law.pdfUrlEn && (
+                      <a
+                        href={law.pdfUrlEn}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 md:flex-auto"
+                      >
+                        <Button variant="outline" className="w-full">
+                          <Download className="h-4 w-4 mr-2" />
+                          {t['law.pdf_en']}
+                        </Button>
+                      </a>
+                    )}
+                    
+                    {(isPremium || isAdmin) && (
+                      <Button 
+                        variant="gold" 
+                        className="w-full mt-2"
+                        onClick={exportToText}
+                      >
+                        <Download className="h-4 w-4 mr-2" />
+                        تصدير النص
+                      </Button>
+                    )}
                    <Link href="/search" className="flex-1 md:flex-auto">
                      <Button variant="outline" className="w-full">
                        {t['nav.search']}
