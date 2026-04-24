@@ -1,0 +1,11 @@
+{
+  "git": {
+    "deploymentEnabled": {
+      "master": true,
+      "main": true
+    }
+  },
+  "buildCommand": "prisma generate && next build",
+  "framework": "nextjs",
+  "installCommand": "npm install"
+}
