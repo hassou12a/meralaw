@@ -10,7 +10,7 @@ export async function GET(request: Request) {
     const year = searchParams.get('year');
     const query = searchParams.get('q');
     const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '12');
+    const limit = parseInt(searchParams.get('limit') || '50');
 
     const where: Record<string, unknown> = {};
 

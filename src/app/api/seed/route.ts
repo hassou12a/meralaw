@@ -1,74 +1,65 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
-import { LAWS_DATA } from '@/lib/joradp';
-import { buildJoradpUrl } from '@/lib/joradp';
+import { ADMINISTRATIVE_LAW_CATALOG } from '@/lib/legal-catalog';
 
 export async function POST() {
   try {
     const results = { inserted: 0, updated: 0, errors: 0 };
-    
-    for (const law of LAWS_DATA) {
+
+    for (const law of ADMINISTRATIVE_LAW_CATALOG) {
       try {
         const existing = await prisma.law.findUnique({
           where: { referenceNumber: law.referenceNumber },
         });
-        
-         const data = {
-           titleAr: law.titleAr,
-           titleFr: law.titleFr,
-           titleEn: law.titleFr,
-           referenceNumber: law.referenceNumber,
-           category: law.category,
-           year: law.jorfYear,
-           publicationDate: `${law.jorfYear}-01-01`,
-           journalOfficiel: `JORF ${law.jorfNumber}/${law.jorfYear}`,
-           descriptionAr: `${law.titleAr} - ${law.category}`,
-           descriptionFr: `${law.titleFr} - ${law.category}`,
-           descriptionEn: `${law.titleFr} - ${law.category}`,
-           contentAr: law.titleAr,
-           contentFr: law.titleFr,
-           contentEn: law.titleFr,
-           jorfYear: law.jorfYear,
-           jorfNumber: law.jorfNumber,
-           pdfUrlAr: buildJoradpUrl(law.jorfYear, law.jorfNumber, 'ar'),
-           pdfUrlFr: buildJoradpUrl(law.jorfYear, law.jorfNumber, 'fr'),
-           isVerified: true,
-         };
-        
+
         if (existing) {
           await prisma.law.update({
             where: { referenceNumber: law.referenceNumber },
-            data,
+            data: law,
           });
           results.updated++;
         } else {
-          await prisma.law.create({ data });
+          await prisma.law.create({ data: law });
           results.inserted++;
         }
-      } catch (e) {
+      } catch {
         results.errors++;
       }
     }
-    
+
     const total = await prisma.law.count({
-      where: { isVerified: true },
+      where: {
+        OR: [{ tags: { has: 'administrative-law' } }, { source: 'JORADP' }],
+      },
     });
-    
+
     return NextResponse.json({
       success: true,
       ...results,
       total,
     });
   } catch (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : String(error) },
+      { status: 500 }
+    );
   }
 }
 
 export async function GET() {
   try {
     const count = await prisma.law.count();
-    return NextResponse.json({ count });
+    const administrative = await prisma.law.count({
+      where: {
+        OR: [{ tags: { has: 'administrative-law' } }, { source: 'JORADP' }],
+      },
+    });
+
+    return NextResponse.json({ count, administrative });
   } catch (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : String(error) },
+      { status: 500 }
+    );
   }
 }

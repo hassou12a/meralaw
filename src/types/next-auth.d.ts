@@ -6,12 +6,14 @@ declare module 'next-auth' {
       id: string;
       profession: string;
       plan: string;
+      isAdmin: boolean;
     } & DefaultSession['user'];
   }
 
   interface User {
     profession?: string;
     plan?: string;
+    isAdmin?: boolean;
   }
 }
 
@@ -20,5 +22,6 @@ declare module 'next-auth/jwt' {
     id: string;
     profession: string;
     plan: string;
+    isAdmin: boolean;
   }
 }

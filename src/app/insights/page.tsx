@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -13,52 +14,70 @@ import {
   ArrowRight,
   Lightbulb,
   FileText,
-  Quote,
+  Loader2,
 } from 'lucide-react';
 
-const dailyTips = {
-  ar: [
-    { title: 'مبدأ عدم جوازiefs', content: 'لا يجوز للمحكمة أن تقضي بشيء لم يطلبه الخصوم.' },
-    { title: 'التقادم', content: 'التقادم عشرون سنة ما لم يرد نص يقصره.' },
-    { title: 'حجية الأمر المقضي', content: 'الحكم النهائي يكتسب حجية الشيء المقضي به.' },
-  ],
-  fr: [
-    { title: 'Principe de la demande', content: 'Le juge ne peut statuer sur ce qui n\'a pas été demandé.' },
-    { title: 'Prescription', content: 'La prescription est de 20 ans sauf texte particulier.' },
-    { title: 'Chose jugée', content: 'Le jugement définitif acquiert l\'autorité de la chose jugée.' },
-  ],
-  en: [
-    { title: 'Principle of Claim', content: 'The court cannot rule on what has not been requested.' },
-    { title: 'Prescription', content: 'Prescription is 20 years unless otherwise stipulated.' },
-    { title: 'Res Judicata', content: 'Final judgments acquire the authority of res judicata.' },
-  ],
-};
+interface Tip {
+  title: string;
+  content: string;
+}
 
-const articles = {
-  ar: [
-    { title: 'فهم النظام القانوني الجزائري', desc: 'نظرة شاملة على مصادر القانون في الجزائر' },
-    { title: 'حقوق المرأة في قانون الأسرة', desc: 'تطورات التشريع الجزائري في مجال المساواة' },
-    { title: 'العقد الإلكتروني', desc: 'الاعتراف بالعقود الرقمية في القانون الجزائري' },
-  ],
-  fr: [
-    { title: 'Comprendre le système juridique algérien', desc: 'Vue d\'ensemble des sources du droit en Algérie' },
-    { title: 'Droits de la femme dans le Code de la famille', desc: 'Évolutions de la législation algérienne' },
-    { title: 'Le contrat électronique', desc: 'Reconnaissance des contrats numériques' },
-  ],
-  en: [
-    { title: 'Understanding Algerian Legal System', desc: 'Overview of legal sources in Algeria' },
-    { title: 'Women\'s Rights in Family Law', desc: 'Legislative developments in Algeria' },
-    { title: 'Electronic Contracts', desc: 'Recognition of digital contracts' },
-  ],
-};
+interface Article {
+  id: string;
+  title: string;
+  desc: string;
+  category: string;
+  reference: string;
+  year: number;
+}
 
 export default function InsightsPage() {
   const { language, translations: t } = useLanguage();
   const { data: session } = useSession();
   const isPro = session?.user?.plan === 'PRO';
 
-  const tips = dailyTips[language] || dailyTips.fr;
-  const articleList = articles[language] || articles.fr;
+  const [tips, setTips] = useState<Tip[]>([]);
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function loadInsights() {
+      try {
+        const res = await fetch(`/api/insights?lang=${language}`);
+        if (!res.ok) throw new Error('Failed to fetch insights');
+        const data = await res.json();
+        setTips(data.dailyTips || []);
+        setArticles(data.articles || []);
+      } catch (err) {
+        console.error('Error loading insights:', err);
+        setError(
+          language === 'ar'
+            ? 'حدث خطأ أثناء تحميل المعرفة القانونية'
+            : language === 'fr'
+            ? 'Erreur lors du chargement des connaissances juridiques'
+            : 'Error loading legal insights'
+        );
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadInsights();
+  }, [language]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900">
+        <div className="flex items-center gap-3">
+          <Loader2 className="h-8 w-8 animate-spin text-navy" />
+          <span className="text-slate-600 dark:text-slate-400">
+            {language === 'ar' ? 'جاري التحميل...' : language === 'fr' ? 'Chargement...' : 'Loading...'}
+          </span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
@@ -81,6 +100,12 @@ export default function InsightsPage() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {error && (
+          <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 px-4 py-3 rounded-lg mb-8">
+            {error}
+          </div>
+        )}
+
         <div className="grid md:grid-cols-2 gap-8">
           <div>
             <h2 className="text-2xl font-bold text-navy dark:text-white mb-6 flex items-center gap-2">
@@ -105,13 +130,18 @@ export default function InsightsPage() {
               {language === 'ar' ? 'مقالات قانونية' : language === 'fr' ? 'Articles juridiques' : 'Legal Articles'}
             </h2>
             <div className="space-y-4">
-              {articleList.map((article, i) => (
-                <Card key={i} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="pt-4">
-                    <h3 className="font-semibold text-navy dark:text-white mb-2">{article.title}</h3>
-                    <p className="text-slate-600 dark:text-slate-400 text-sm">{article.desc}</p>
-                  </CardContent>
-                </Card>
+              {articles.map((article) => (
+                <Link key={article.id} href={`/laws/${article.id}`}>
+                  <Card className="hover:shadow-lg transition-shadow cursor-pointer mb-4">
+                    <CardContent className="pt-4">
+                      <h3 className="font-semibold text-navy dark:text-white mb-2">{article.title}</h3>
+                      <p className="text-slate-600 dark:text-slate-400 text-sm mb-2">{article.desc}</p>
+                      <span className="inline-flex items-center px-2 py-1 text-xs font-medium bg-navy/10 text-navy rounded-full">
+                        {article.category} - {article.year}
+                      </span>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>

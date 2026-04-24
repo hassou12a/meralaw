@@ -143,9 +143,11 @@ export default function PricingPage() {
                   {t['sub.current']}
                 </p>
               ) : session ? (
-                <Button variant="gold" className="w-full">
-                  {t['btn.upgrade']}
-                </Button>
+                <Link href="/premium">
+                  <Button variant="gold" className="w-full">
+                    {t['btn.upgrade']}
+                  </Button>
+                </Link>
               ) : (
                 <Link href="/register">
                   <Button variant="gold" className="w-full">

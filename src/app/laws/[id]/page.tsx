@@ -40,6 +40,13 @@ interface Law {
   pdfUrlEn?: string | null;
 }
 
+interface RelatedLaw {
+  id: string;
+  titleAr: string;
+  titleFr: string;
+  titleEn: string;
+}
+
 const categoryIcons: Record<string, React.ElementType> = {
   'الدستور الجزائري': Scale,
   'القانون المدني': BookOpen,
@@ -64,6 +71,7 @@ export default function LawDetailPage() {
   const [law, setLaw] = useState<Law | null>(null);
   const [loading, setLoading] = useState(true);
   const [showContent, setShowContent] = useState(false);
+  const [relatedLaws, setRelatedLaws] = useState<RelatedLaw[]>([]);
 
   useEffect(() => {
     fetchLaw();
@@ -78,6 +86,21 @@ export default function LawDetailPage() {
 
       if (!data.isPremium || isPremium) {
         setShowContent(true);
+      }
+
+      if (data.category) {
+        const relatedRes = await fetch(
+          `/api/laws?category=${encodeURIComponent(data.category)}&limit=4`
+        );
+        if (relatedRes.ok) {
+          const relatedData = await relatedRes.json();
+          const relatedItems = Array.isArray(relatedData?.laws)
+            ? relatedData.laws
+                .filter((item: RelatedLaw & { id: string }) => item.id !== data.id)
+                .slice(0, 3)
+            : [];
+          setRelatedLaws(relatedItems);
+        }
       }
     } catch (error) {
       console.error('Error fetching law:', error);
@@ -193,22 +216,43 @@ export default function LawDetailPage() {
 
                  <div className="pt-4 border-t border-slate-200 dark:border-slate-700 flex gap-2 flex-wrap">
                    {law.pdfUrlAr && (
-                     <Button variant="outline" className="flex-1 md:flex-auto">
-                       <Download className="h-4 w-4 mr-2" />
-                       {t['law.pdf_ar']}
-                     </Button>
+                     <a
+                       href={law.pdfUrlAr}
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="flex-1 md:flex-auto"
+                     >
+                       <Button variant="outline" className="w-full">
+                         <Download className="h-4 w-4 mr-2" />
+                         {t['law.pdf_ar']}
+                       </Button>
+                     </a>
                    )}
                    {law.pdfUrlFr && (
-                     <Button variant="outline" className="flex-1 md:flex-auto">
-                       <Download className="h-4 w-4 mr-2" />
-                       {t['law.pdf_fr']}
-                     </Button>
+                     <a
+                       href={law.pdfUrlFr}
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="flex-1 md:flex-auto"
+                     >
+                       <Button variant="outline" className="w-full">
+                         <Download className="h-4 w-4 mr-2" />
+                         {t['law.pdf_fr']}
+                       </Button>
+                     </a>
                    )}
                    {law.pdfUrlEn && (
-                     <Button variant="outline" className="flex-1 md:flex-auto">
-                       <Download className="h-4 w-4 mr-2" />
-                       {t['law.pdf_en']}
-                     </Button>
+                     <a
+                       href={law.pdfUrlEn}
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="flex-1 md:flex-auto"
+                     >
+                       <Button variant="outline" className="w-full">
+                         <Download className="h-4 w-4 mr-2" />
+                         {t['law.pdf_en']}
+                       </Button>
+                     </a>
                    )}
                    <Link href="/search" className="flex-1 md:flex-auto">
                      <Button variant="outline" className="w-full">

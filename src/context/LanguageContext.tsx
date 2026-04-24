@@ -15,7 +15,6 @@ const translations: Record<Language, Record<string, string>> = {
    ar: {
       // Navigation
       'nav.home': 'الرئيسية',
-      'admin.feed.daysBack': 'الأيام الماضية',
     'nav.laws': 'المكتبات القانونية',
     'nav.search': 'البحث',
     'nav.assistant': 'المساعد الذكي',
@@ -61,7 +60,6 @@ const translations: Record<Language, Record<string, string>> = {
     // Buttons
     'btn.read': 'اقرأ المزيد',
     'btn.download': 'تحميل PDF',
-    'btn.search': 'بحث',
     'btn.submit': 'إرسال',
     'btn.cancel': 'إلغاء',
     'btn.save': 'حفظ',
@@ -89,11 +87,9 @@ const translations: Record<Language, Record<string, string>> = {
      'profession.lawyer': 'محامي',
      'admin.feed': 'التغذية من المصادر الرسمية',
      'admin.feed.maxResults': 'الحد الأقصى للنتائج',
-     'admin.feed.daysBack': 'الأيام الماضية',
      'feed.results': 'النتائج',
      'feed.selectLaw': 'اختيار هذا القانون',
      'feed.selected': 'محدد',
-     'btn.search': 'بحث',
     'profession.judge': 'قاضي',
     'profession.bailiff': 'محضر',
     'profession.notary': 'موثق',
@@ -284,7 +280,6 @@ const translations: Record<Language, Record<string, string>> = {
     // Buttons
     'btn.read': 'Lire la suite',
     'btn.download': 'Télécharger PDF',
-    'btn.search': 'Rechercher',
     'btn.submit': 'Soumettre',
     'btn.cancel': 'Annuler',
     'btn.save': 'Enregistrer',
@@ -500,7 +495,6 @@ const translations: Record<Language, Record<string, string>> = {
     // Buttons
     'btn.read': 'Read More',
     'btn.download': 'Download PDF',
-    'btn.search': 'Search',
     'btn.submit': 'Submit',
     'btn.cancel': 'Cancel',
     'btn.save': 'Save',
@@ -609,8 +603,6 @@ const translations: Record<Language, Record<string, string>> = {
      'filter.clear': 'Clear Filters',
      'admin.feed': 'Feed from Official Sources',
      'admin.feed.maxResults': 'Max Results',
-     'admin.feed.daysBack': 'Days Back',
-     'btn.search': 'Search',
     
     // Law details
     'law.reference': 'Reference',
@@ -688,6 +680,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  useEffect(() => {
+    if (!mounted) return;
+    document.documentElement.lang = language;
+    document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+  }, [language, mounted]);
+
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     localStorage.setItem('lexdz-language', lang);
@@ -721,3 +719,5 @@ export function useLanguage() {
   }
   return context;
 }
+
+

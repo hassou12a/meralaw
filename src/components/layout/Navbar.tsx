@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -78,6 +78,15 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('meralaw-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const shouldUseDark = savedTheme ? savedTheme === 'dark' : prefersDark;
+
+    setDarkMode(shouldUseDark);
+    document.documentElement.classList.toggle('dark', shouldUseDark);
+  }, []);
+
   const isPremium = session?.user?.plan === 'PRO';
   const langTrans = translations[language];
 
@@ -99,8 +108,10 @@ export function Navbar() {
     : [];
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle('dark');
+    const nextValue = !darkMode;
+    setDarkMode(nextValue);
+    document.documentElement.classList.toggle('dark', nextValue);
+    localStorage.setItem('meralaw-theme', nextValue ? 'dark' : 'light');
   };
 
   return (

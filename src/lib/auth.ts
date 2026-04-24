@@ -35,12 +35,13 @@ export const authOptions: NextAuthOptions = {
         }
 
 return {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          profession: user.profession,
-          plan: user.plan,
-        };
+           id: user.id,
+           email: user.email,
+           name: user.name,
+           profession: user.profession,
+           plan: user.plan,
+           isAdmin: user.isAdmin,
+         };
       },
     }),
   ],
@@ -48,22 +49,24 @@ return {
     strategy: 'jwt',
   },
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.profession = user.profession || 'free';
-        token.plan = user.plan || 'FREE';
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      if (session.user) {
-        session.user.id = token.id as string;
-        session.user.profession = token.profession as string;
-        session.user.plan = token.plan as string;
-      }
-      return session;
-    },
+async jwt({ token, user }) {
+  if (user) {
+    token.id = user.id;
+    token.profession = user.profession || 'free';
+    token.plan = user.plan || 'FREE';
+    token.isAdmin = user.isAdmin ?? false;
+  }
+  return token;
+},
+async session({ session, token }) {
+  if (session.user) {
+    session.user.id = token.id as string;
+    session.user.profession = token.profession as string;
+    session.user.plan = token.plan as string;
+    session.user.isAdmin = token.isAdmin as boolean;
+  }
+  return session;
+},
   },
   pages: {
     signIn: '/login',

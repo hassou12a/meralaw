@@ -18,6 +18,7 @@ model User {
   subscriptionEndDate    DateTime?
   isPaymentPending       Boolean   @default(false)
   paymentReceiptUrl      String?
+  isAdmin                Boolean   @default(false)
   createdAt              DateTime  @default(now())
   updatedAt              DateTime  @updatedAt
   cases                  Case[]

@@ -71,17 +71,17 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-sm text-slate-300">
               <li>
-                <Link href="#" className="hover:text-gold transition-colors">
+                <Link href="/about" className="hover:text-gold transition-colors">
                   {language === 'ar' ? 'عن LexDZ' : language === 'fr' ? 'À propos' : 'About'}
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-gold transition-colors">
+                <Link href="/about" className="hover:text-gold transition-colors">
                   {language === 'ar' ? 'اتصل بنا' : language === 'fr' ? 'Contact' : 'Contact'}
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-gold transition-colors">
+                <Link href="/about" className="hover:text-gold transition-colors">
                   {language === 'ar' ? 'سياسة الخصوصية' : language === 'fr' ? 'Confidentialité' : 'Privacy'}
                 </Link>
               </li>
@@ -106,3 +106,5 @@ export function Footer() {
     </footer>
   );
 }
+
+

@@ -24,7 +24,7 @@ const professionOptions = [
 export default function ProfilePage() {
   const router = useRouter();
   const { language, translations: t } = useLanguage();
-  const { data: session, status } = useSession();
+  const { data: session, status, update } = useSession();
   const isPremium = session?.user?.plan === 'PRO';
 
   const [name, setName] = useState('');
@@ -32,6 +32,9 @@ export default function ProfilePage() {
   const [profession, setProfession] = useState('');
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [createdAt, setCreatedAt] = useState<string>('');
+  const [lawCount, setLawCount] = useState<number>(0);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     if (status === 'loading') return;
@@ -42,18 +45,70 @@ export default function ProfilePage() {
     setName(session.user?.name || '');
     setEmail(session.user?.email || '');
     setProfession(session.user?.profession || '');
-  }, [session, status]);
+
+    async function loadProfile() {
+      try {
+        const [profileRes, lawsRes] = await Promise.all([
+          fetch('/api/profile'),
+          fetch('/api/laws?limit=1'),
+        ]);
+
+        if (profileRes.ok) {
+          const profileData = await profileRes.json();
+          if (profileData?.user) {
+            setName(profileData.user.name || '');
+            setEmail(profileData.user.email || '');
+            setProfession(profileData.user.profession || '');
+            setCreatedAt(profileData.user.createdAt || '');
+          }
+        }
+
+        if (lawsRes.ok) {
+          const lawsData = await lawsRes.json();
+          setLawCount(lawsData?.pagination?.total || 0);
+        }
+      } catch (error) {
+        console.error('Profile load error:', error);
+      }
+    }
+
+    loadProfile();
+  }, [session, status, router]);
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
     setSaved(false);
+    setErrorMessage('');
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const res = await fetch('/api/profile', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, profession }),
+      });
 
-    setSaving(false);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 3000);
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data?.error || 'Failed to save profile');
+      }
+
+      await update({
+        ...session,
+        user: {
+          ...session?.user,
+          name: data.user.name,
+          profession: data.user.profession,
+        },
+      });
+
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to save profile');
+    } finally {
+      setSaving(false);
+    }
   };
 
   const getProfessionLabel = (prof: string) => {
@@ -150,6 +205,9 @@ export default function ProfilePage() {
                     )}
                   </Button>
                 </div>
+                {errorMessage && (
+                  <p className="text-sm text-red-500">{errorMessage}</p>
+                )}
               </form>
             </CardContent>
           </Card>
@@ -205,7 +263,7 @@ export default function ProfilePage() {
                         ? "Passez à Premium pour accéder à toutes les fonctionnalités"
                         : 'Upgrade to access all features'}
                     </p>
-                    <Link href="/pricing">
+                    <Link href="/premium">
                       <Button variant="gold">
                         <Sparkles className="h-4 w-4" />
                         {t['btn.upgrade']}
@@ -232,7 +290,7 @@ export default function ProfilePage() {
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 <div className="text-center">
-                  <p className="text-3xl font-bold text-navy">16</p>
+                  <p className="text-3xl font-bold text-navy">{lawCount}</p>
                   <p className="text-sm text-slate-500">
                     {language === 'ar' ? 'القوانين المتاحة' : language === 'fr' ? 'Lois disponibles' : 'Available Laws'}
                   </p>
@@ -247,7 +305,7 @@ export default function ProfilePage() {
                 </div>
                 <div className="text-center">
                   <p className="text-3xl font-bold text-navy">
-                    -
+                    {createdAt ? new Date(createdAt).toLocaleDateString() : '-'}
                   </p>
                   <p className="text-sm text-slate-500">
                     {language === 'ar' ? 'تاريخ التسجيل' : language === 'fr' ? "Date d'inscription" : 'Registration Date'}

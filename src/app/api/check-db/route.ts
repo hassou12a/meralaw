@@ -8,10 +8,10 @@ export async function GET() {
       status: 'ok',
       laws: count 
     });
-  } catch (error: any) {
+  } catch (error) {
     return NextResponse.json({ 
       status: 'error', 
-      message: error.message 
+      message: error instanceof Error ? error.message : String(error),
     }, { status: 500 });
   }
 }

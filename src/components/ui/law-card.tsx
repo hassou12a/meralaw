@@ -32,17 +32,22 @@ interface LawCardProps {
 }
 
 const categoryIcons: Record<string, React.ElementType> = {
-  'الدستور الجزائري': Scale,
-  'القانون المدني': BookOpen,
-  'قانون الإجراءات المدنية والإدارية': FileText,
-  'القانون التجاري': Scale,
-  'قانون العقوبات': Scale,
-  'قانون الأسرة': BookOpen,
-  'قانون العمل': FileText,
-  'القانون الإداري': Scale,
-  'المراسيم التنفيذية': FileText,
-  'الأوامر presidential': Sparkles,
-  'المناشير والتعليمات الوزارية': FileText,
+  'دستور': Scale,
+  'مدني': BookOpen,
+  'جنائي': Scale,
+  'أسري': BookOpen,
+  'شغل': FileText,
+  'تجاري': Scale,
+  'ضريبي': Scale,
+  'جمارك': Scale,
+  'عقاري': Scale,
+  'إجراءات قضائية إدارية': FileText,
+  'وظيف عمومي': FileText,
+  'إدارة محلية': Scale,
+  'صفقات عمومية': Scale,
+  'تنظيم إداري': Scale,
+  'مالية عامة': Scale,
+  'إداري': Scale,
 };
 
 export function LawCard({
@@ -126,7 +131,7 @@ export function LawCard({
               PDF
             </a>
           ) : sourceUrl ? (
-            <Link
+            <a
               href={sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -134,7 +139,7 @@ export function LawCard({
             >
               <ExternalLink className="h-3 w-3" />
               {language === 'ar' ? 'المصدر' : language === 'fr' ? 'Source' : 'Source'}
-            </Link>
+            </a>
           ) : (
             <span className="px-4 py-2 text-sm font-medium border border-slate-300 text-slate-300 rounded-lg cursor-not-allowed opacity-50">
               PDF

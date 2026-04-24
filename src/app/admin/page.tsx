@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -17,6 +19,7 @@ interface User {
   isPaymentPending: boolean;
   subscriptionEndDate: Date | null;
   createdAt: Date;
+  isAdmin: boolean;
 }
 
 interface Law {
@@ -36,12 +39,27 @@ type Tab = 'users' | 'laws' | 'add-law' | 'feed';
 
 export default function AdminDashboard() {
   const { language, translations: t } = useLanguage();
+  const { data: session, status } = useSession();
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<Tab>('users');
   const [users, setUsers] = useState<User[]>([]);
   const [laws, setLaws] = useState<Law[]>([]);
   const [stats, setStats] = useState({ total: 0, pro: 0, free: 0, pending: 0, lawsTotal: 0 });
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Redirect if not authenticated or not admin
+  useEffect(() => {
+    if (status === 'loading') return;
+    if (!session?.user) {
+      router.push('/login');
+      return;
+    }
+    if (!(session.user as any).isAdmin) {
+      router.push('/');
+      return;
+    }
+  }, [session, status, router]);
   
   // Feed state
   const [feedCategory, setFeedCategory] = useState<string>('إداري');

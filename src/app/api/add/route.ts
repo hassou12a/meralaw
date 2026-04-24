@@ -47,7 +47,10 @@ export async function GET() {
 
     const count = await prisma.law.count();
     return NextResponse.json({ success: true, added, total: count });
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : String(error) },
+      { status: 500 }
+    );
   }
 }

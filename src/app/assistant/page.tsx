@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -32,6 +32,7 @@ interface Message {
 
 export default function AssistantPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { language, translations: t } = useLanguage();
   const { data: session, status } = useSession();
   const isPremium = session?.user?.plan === 'PRO';
@@ -40,6 +41,7 @@ export default function AssistantPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedCase, setSelectedCase] = useState<string>('');
+  const [cases, setCases] = useState<Array<{ id: string; name: string }>>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -52,6 +54,37 @@ export default function AssistantPage() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  useEffect(() => {
+    if (!session) return;
+
+    async function loadCases() {
+      try {
+        const res = await fetch('/api/cases');
+        const data = await res.json();
+        const nextCases = Array.isArray(data?.cases)
+          ? data.cases.map((item: { id: string; name: string }) => ({
+              id: item.id,
+              name: item.name,
+            }))
+          : [];
+
+        setCases(nextCases);
+
+        const requestedCase = searchParams.get('case');
+        if (
+          requestedCase &&
+          nextCases.some((item: { id: string; name: string }) => item.id === requestedCase)
+        ) {
+          setSelectedCase(requestedCase);
+        }
+      } catch (error) {
+        console.error('Error loading cases:', error);
+      }
+    }
+
+    loadCases();
+  }, [session, searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -157,9 +190,11 @@ export default function AssistantPage() {
               <option value="">
                 {language === 'ar' ? 'بدون ملف' : language === 'fr' ? 'Sans dossier' : 'No case'}
               </option>
-              <option value="case-1">
-                {language === 'ar' ? 'قضية نزاع عقاري' : 'Affaire contentieux immobilier'}
-              </option>
+              {cases.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.name}
+                </option>
+              ))}
             </select>
           </div>
 

@@ -45,6 +45,8 @@ export default function CasesPage() {
   const [newCaseName, setNewCaseName] = useState('');
   const [newCaseDesc, setNewCaseDesc] = useState('');
   const [showArchived, setShowArchived] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
   useEffect(() => {
     if (status === 'loading') return;
@@ -70,6 +72,8 @@ export default function CasesPage() {
   const handleCreateCase = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newCaseName.trim()) return;
+    setError(null);
+    setSuccess(null);
 
     try {
       const res = await fetch('/api/cases', {
@@ -85,34 +89,58 @@ export default function CasesPage() {
         setShowModal(false);
         setNewCaseName('');
         setNewCaseDesc('');
+        setSuccess(language === 'ar' ? 'تم إنشاء الملف بنجاح' : language === 'fr' ? 'Dossier créé avec succès' : 'Case created successfully');
         fetchCases();
+      } else {
+        const data = await res.json();
+        setError(data.error || (language === 'ar' ? 'فشل في إنشاء الملف' : language === 'fr' ? 'Échec de création' : 'Failed to create case'));
       }
     } catch (error) {
       console.error('Error creating case:', error);
+      setError(language === 'ar' ? 'حدث خطأ أثناء إنشاء الملف' : language === 'fr' ? 'Erreur lors de la création' : 'Error creating case');
     }
   };
 
   const handleDeleteCase = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this case?')) return;
+    if (!confirm(language === 'ar' ? 'هل أنت متأكد من حذف هذا الملف؟' : language === 'fr' ? 'Voulez-vous vraiment supprimer ce dossier ?' : 'Are you sure you want to delete this case?')) return;
+    setError(null);
+    setSuccess(null);
 
     try {
-      await fetch(`/api/cases/${id}`, { method: 'DELETE' });
-      fetchCases();
+      const res = await fetch(`/api/cases/${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        setSuccess(language === 'ar' ? 'تم حذف الملف بنجاح' : language === 'fr' ? 'Dossier supprimé avec succès' : 'Case deleted successfully');
+        fetchCases();
+      } else {
+        const data = await res.json();
+        setError(data.error || (language === 'ar' ? 'فشل في حذف الملف' : language === 'fr' ? 'Échec de suppression' : 'Failed to delete case'));
+      }
     } catch (error) {
       console.error('Error deleting case:', error);
+      setError(language === 'ar' ? 'حدث خطأ أثناء حذف الملف' : language === 'fr' ? 'Erreur lors de la suppression' : 'Error deleting case');
     }
   };
 
   const handleArchiveCase = async (id: string) => {
+    setError(null);
+    setSuccess(null);
+
     try {
-      await fetch(`/api/cases/${id}`, {
+      const res = await fetch(`/api/cases/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ archived: true }),
       });
-      fetchCases();
+      if (res.ok) {
+        setSuccess(language === 'ar' ? 'تم أرشفة الملف بنجاح' : language === 'fr' ? 'Dossier archivé avec succès' : 'Case archived successfully');
+        fetchCases();
+      } else {
+        const data = await res.json();
+        setError(data.error || (language === 'ar' ? 'فشل في أرشفة الملف' : language === 'fr' ? 'Échec d\'archivage' : 'Failed to archive case'));
+      }
     } catch (error) {
       console.error('Error archiving case:', error);
+      setError(language === 'ar' ? 'حدث خطأ أثناء أرشفة الملف' : language === 'fr' ? 'Erreur lors de l\'archivage' : 'Error archiving case');
     }
   };
 
@@ -174,6 +202,28 @@ export default function CasesPage() {
           </div>
         </div>
       </section>
+
+      {/* Alerts */}
+      {error && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+          <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 px-4 py-3 rounded-lg flex items-center justify-between">
+            <span>{error}</span>
+            <button onClick={() => setError(null)} className="text-red-500 hover:text-red-700">
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+      )}
+      {success && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+          <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400 px-4 py-3 rounded-lg flex items-center justify-between">
+            <span>{success}</span>
+            <button onClick={() => setSuccess(null)} className="text-green-500 hover:text-green-700">
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Active Cases */}
